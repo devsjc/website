@@ -1,6 +1,6 @@
 ---
 title: "The Complete Guide to pyproject.toml"
-subtitle: "The simplest way to manage and package python projects"
+subtitle: "the simplest way to manage and package python projects"
 description: "A walkthrough detailing a python setup that ditches poetry, setup.py, and even requirements.txt."
 author: devsjc
 date: 2024-06-27
@@ -10,8 +10,7 @@ tags: [pyproject, python, packaging, guide]
 *Just looking for a `pyproject.toml` to copy to your new project? See the
 [accompanying gist](https://gist.github.com/devsjc/86b896611d780e3e3c937b9c48682f31)!*
 
-Background: Why do we need pyproject?
-=====================================
+## Background: Why do we need pyproject?
 
 Let's get the elephant in the room out of the way first, because I know what some of you are
 thinking: Isn't `pyproject.toml` the [poetry](https://python-poetry.org/) configuration file?
@@ -83,8 +82,7 @@ As such it is an eminently portable setup, reducing the friction for developers 
 Lets get to work cleaning up the roots of those repos!
 
 
-Ditching requirements.txt
-=========================
+## Ditching requirements.txt
 
 The first piece of functionality we'll investigate is that of managing your dependencies with
 `pyproject.toml`. The main metadata section of the `pyproject.toml` file comes under the
@@ -115,8 +113,7 @@ The dependencies will now be installed into the `site_packages` folder of your v
 build frontend stores dependency source code.)
 
 
-Editable and normal installations
----------------------------------
+### Editable and normal installations
 
 What's that `-e` flag? This tells pip to perform an *editable* install, which is the install mode
 best for development of a project. Normally when you install a dependency (such as `requests`), pip
@@ -138,8 +135,7 @@ recommended by `python.org`[[4]](https://packaging.python.org/en/latest/discussi
 For more information on editable installations, see the Setuptools' guide to Development Mode[[8]](https://setuptools.pypa.io/en/latest/userguide/development_mode.html).
 
 
-Optional dependencies
----------------------
+### Optional dependencies
 
 The `pyproject.toml` file improves upon `requirements.txt` by allowing the specification of
 *optional dependencies* - dependencies required for parts of local development of the project, but
@@ -245,8 +241,7 @@ formatting the code in the same way? Lets go about removing some more config fil
 at it, lets learn what we were on about in the `lint` dependency array with "ruff" and "mypy"...
 
 
-Configuring Linters
-===================
+## Configuring Linters
 
 The next piece of functionality we'll glean from `pyproject.toml` is that provided by many
 tool-specific config, dot, and ini files - linting (and formatting, and fixing!). Using
@@ -319,8 +314,7 @@ configuration of ruff present to keep their code style consistent with the alrea
 In this manner, a uniform development experience can be had by all contributors.
 
 
-MyPy
-----
+### MyPy
 
 A blank project is also the best time[[18]](https://mypy.readthedocs.io/en/stable/existing_code.html)
 to integrate `mypy`, which bring static type checking to python *a la* compiled languages. The
@@ -357,8 +351,7 @@ So now lets switch our focus to building our code, and see how the `pyproject.to
 lets us keep things consolidated.
 
 
-Packaging for Distribution
-==========================
+## Packaging for Distribution
 
 If your project is intended as use as an installable library, or a command line tool, chances are
 you're going to want to publish a distribution of it to PyPi. Building an `sdist` or `wheel`
@@ -376,8 +369,7 @@ Now, running our `pip install` commands from before also installs the build syst
 very exciting! So what can we do with this now we have it available?
 
 
-Entrypoints
------------
+### Entrypoints
 
 We now need to make some assumptions about the layout of our project. Lets say we were paying
 attention in the [editable installations](#editable-and-normal-installations) section, and have
@@ -449,8 +441,7 @@ The cli is then accessible through the command `coolprojectcli`.
 ```
 
 
-Metadata
---------
+### Metadata
 
 Speaking of the `README.md`, it would be useful if people viewing the package on PyPi could be
 privvy to the same information as those viewing the source code itself. To this end, there's lots
@@ -507,8 +498,7 @@ Containerisation. This article will now act less as a tutorialized resource and 
 reference, describing how to achieve certain goals with the new `pyproject.toml` setup.
 
 
-Multi-stage Dockerfiles
-=======================
+## Multi-stage Dockerfiles
 
 One thing that I struggled with after adopting `pyproject.toml` was my usual multi-stage
 Containerfile workflow. With a `requirements.txt` file, building a small container with just the
@@ -586,8 +576,7 @@ options:
 ```
 
 
-Bonus: Efficient GitHub Actions usage
-=====================================
+## Bonus: Efficient GitHub Actions usage
 
 Yes, there are other CI tools - but as with our selection of build frontends and backends, it's
 most likely that you are personally using GitHub Actions[[29]](https://www.jetbrains.com/lp/devecosystem-2023/team-tools/#ci_tools),
@@ -729,8 +718,7 @@ spot! We did install the test requirements into the cached virtual environment. 
 because `pip wheel` will only look for what is specified in the `dependencies` section to include
 as dependencies of the wheel. Our wheel stays no bigger than the size it needs to be!
 
-Bonus: Automatic semantic versioning
-====================================
+## Bonus: Automatic semantic versioning
 
 One final bonus feature of `pyproject.toml` is the ability to automatically version your package
 using the `version` key in the `[project]` section. This can be done, without any
