@@ -7,13 +7,6 @@ date: "2024-04-05"
 tags: [vim, ssh, sql]
 ---
 
-<figure>
-  <img src="/images/dbui.png" alt="Vim DBUI" />
-  <figcaption>Vim running DBUI</figcaption>
-</figure>
-
-Like the colour scheme? See [vim-jb](https://github.com/devsjc/vim-jb)!
-
 
 ## Background: What's the Aim?
 

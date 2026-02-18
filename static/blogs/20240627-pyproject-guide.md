@@ -249,8 +249,7 @@ tool-specific config, dot, and ini files - linting (and formatting, and fixing!)
 reducing the file-soup in the root of our repository.
 
 
-Ruff
-----
+### Ruff
 
 There are many linting and fixing tools available for python (`Flake8`, `isort`, `Black` to name a
 few), all of which would often be configured in `setup.cfg`, `tox.ini`, or other tool-specific

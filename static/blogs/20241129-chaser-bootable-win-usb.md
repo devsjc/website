@@ -1,6 +1,6 @@
 ---
-title: "chaser // how to create a bootable Windows USB from macOS"
-subtitle: "Using nothing but the terminal"
+title: "[chaser] How to create a bootable Windows USB from MacOS"
+subtitle: "using nothing but the terminal"
 author: "devsjc"
 date: "2024-11-29"
 tags: [sysadmin]

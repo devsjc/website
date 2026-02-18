@@ -4,487 +4,81 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   
-  <title>Site title</title>
-  <meta name="description" content="Site description">
+  <title>solc.uk</title>
+  <meta name="description" content="Personal website of devsjc, a data engineer based in the
+  UK.">
   
-  <meta property="og:title" content="Sol Cotton">
-  <meta property="og:description" content="Personal website">
-  <meta property="og:image" content="img/site-image.jpg">
-  <meta property="github:site" content="https://github.com/devsjc">
-
-  <link rel="icon" href="#devicon" sizes="any" type="image/svg+xml">
- 
-<style> /* {{{ */
-* {
-  margin: 0; padding: 0; box-sizing: border-box;
-
-  /* Color scheme */
-  --textcolor: rgb(47, 5, 18);
-  --bgcolor: rgb(243, 239, 213);
-  --highlight: rgb(184, 77, 52);
-}
-
-@media (prefers-color-scheme: dark) {
-  * {
-    --textcolor: rgb(245, 245, 251);
-    --bgcolor: rgb(29, 25, 25);
-    --highlight: rgb(207, 194, 144);
-  }
-}
-
-body {
-  font-size: 18px;
-  font-family: system-ui, sans-serif;
-  line-height: 1.4;
-  color: var(--textcolor);
-  background: var(--bgcolor);
-  position: relative;
-  max-width: 56em;
-  margin: 0 auto;  /* centers the layout */
-  scrollbar-gutter: stable;
-}
-
-/* ------- Sections ------- */
-
-section {
-  padding: calc(6em + 5vw) 5vw 8vw 5vw;
-  /* ! Everything below is needed ! */
-  display: none;
-  position: absolute;
-  top: 0;
-  min-height: 100vh;
-  width: 100%;
-  background: var(--bgcolor);
-}
-
-section:target { /* Show section */
-  display: block;
-}
-
-section#home { /* Show #home by default */
-  display: block;
-}
-
-/* ------- Header ------- */
-
-header {
-  padding: 5vw 5vw 0 5vw;
-  display: flex;
-  flex-wrap: wrap;
-  position: absolute;
-  width: 100%;
-  z-index: 2;
-}
-
-header h1 {
-  font-size: 1em;
-  flex: 1; /* pushes nav to the right */
-  white-space: nowrap;
-  padding: 0 5vw .5em 0;
-}
-
-nav a:not(:last-of-type) {
-  margin-right: 1.5vw;
-}
-
-/* ------- General ------- */
-
-a {
-  text-decoration: none;
-  color: var(--highlight);
-}
-
-a:hover {
-  border-bottom: 1px solid;
-}
-
-h2,h3,h4,h5,h6 {
-	line-height: 1;
-  margin: 1.8em 0 1em 0;
-  scroll-margin-top: 2em;
-}
-
-h1 {
-	font-size: 1.85rem;
-  margin: .6em 0 .6em 0;
-}
-
-h2 {
-	font-size: 1.65rem;
-}
-
-h3 {
-	font-size: 1.45rem;
-  opacity: .8;
-}
-
-p, ul, ol, article {
-  max-width: 60ch; /* Limit line-length to 60 characters */
-  margin-bottom: 1em;
-  line-height: 1.4;
-  letter-spacing: .011em;
-  font-weight: 300;
-}
-
-ul {
-  list-style-type: none;
-}
-
-ul li::marker {
-  content: "\2022   ";
-}
-
-li {
-  margin-bottom: .2em;
-}
-
-ul, ol {
-  padding-left: 2ch;
-}
-
-small {
-  font-size: .85em;
-}
-
-hr {
-  height: 1px;
-  border: 0;
-  background: currentColor;
-  opacity: .1;
-  margin: 1.2em 0;
-}
-
-abbr[title]:hover {
-  opacity: .7;
-  cursor: help;
-}
-
-blockquote {
-  padding-left: 2ch;
-  opacity: .7;
-  margin-bottom: .6em;
-  position: relative;
-}
-
-blockquote:before {
-  content: "";
-  position:absolute;
-  left: 0;
-  top: .3em;
-  bottom: .3em;
-  background: currentColor;
-  width: 1px;
-  opacity: .2;
-}
-
-img, svg, video, audio {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  fill: currentColor;
-}
-
-code, textarea {
-  font-family: ui-monospace, SF Mono, Menlo, Monaco, Andale Mono, monospace;
-  font-size: 0.9em;
-  opacity: .7;
-}
-
-pre, textarea { /* for code samples */
-  font-size: .9em;
-  color: inherit;
-  line-height:inherit;
-  padding:.6em .9em;
-  margin: 1.8em 0 1.8em 0;
-  position: relative;
-  display: block;
-  width: 100%;
-  white-space: pre;
-  border:0;
-  border-radius: .5rem;
-  background: oklch(from var(--bgcolor) calc(l + 0.1) c h);
-  box-decoration-break: slice
-  max-width: 100%;
-  overflow-x: auto;
-  white-space: pre;
-  word-wrap: normal;
-}
-
-/* Inline footnotes */
-
-label {
-  cursor: pointer;
-  vertical-align: super;
-  line-height: 1;
-  font-size: .75em;
-  padding-left: .1em;
-}
-
-label:hover {
-  color: var(--highlight);
-}
-
-label:before {content:"[";}
-label:after {content:"]";}
-
-label + input,
-label + input + small {
-  display: none;
-}
-
-input:checked + small {
-  display: block;
-  padding: .8em 0 1em 2.5vw;;
-}
-
-/* Figures */
-
-figure {
-  margin: 2em 0 1.5em 0;
-}
-
-figure figcaption {
-  margin: 0.8em 0 0 0;
-  font-size: .85em;
-  opacity: .7;
-}
-
-/* Responsive video embeds */
-
-figure.video {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  height: 0;
-  overflow: hidden;
-}
-
-figure.video iframe, figure.video object, figure.video embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  visibility: hidden; /* so loading="lazy" should work */
-}
-
-section:target iframe {
-  visibility: visible;
-}
-
-/* External links */
-
-a[href*="//"]:after {
-  font-weight: 300;
-  font-size: .85em;
-  content: "\2197"; /* top right arrow: â†— */
-  color: var(--textcolor);
-  opacity: .25;
-}
-
-a[href*="//"]:hover:after {
-  color: var(--highlight);
-  opacity: 1;
-}
-
-/* File links */
-
-a:before {
-  font-size: .7em;
-  margin-right: .4em;
-}
-
-/* ------- Lightbox ------- */
-
-.lightbox {
-  display: none;
-  color: var(--textcolor);
-}
-
-.lightbox:target {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  background: var(--bgcolor);
-  border: 0;
-  z-index: 3;
-}
-
-.lightbox img {
-  max-height: 100vh;
-  z-index: 4;
-}
-
-.lightbox:target:before { /* Loading spinner */
-  content:"";
-  height: 2em;
-  width: 2em;
-  animation: spin .8s infinite linear;
-  border: 1px solid;
-  border-right-color: transparent;
-  border-radius: 50%;
-  display: block;
-  position: absolute;
-  transform: translateX(-50%);
-  opacity: .25;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-.lightbox:target:after { /* Ã— to close */
-  content: "\00D7";
-  position: fixed;
-  font-size: 2em;
-  font-weight: 200;
-  line-height: 0;
-  top: .75em;
-  right: .5em;
-  z-index: 4;
-}
-
-/* ------- Slideshow ------- */
-
-.slides {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-}
-
-.slides figure {
-  height: 100vh;
-  padding: 0 5vw;
-  margin: 0;
-  display: grid;
-  place-items: center;
-  align-content: center;
-  scroll-snap-align: center;
-}
-
-.slides figure img {
-  max-height: 88vh; /* Adjust if needed */
-}
-
-.slides figure.cover {
-  padding: 0;
-}
-
-.slides figure.cover img {
-  max-height: none;
-  position: absolute;
-  z-index: -1;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-}
-
-/* ------- Smaller screens ------- */
-
-@media only screen and (max-width: 680px) {
-  body { font-size: 16px; }
-}
-
-@media only screen and (max-width: 540px) {
-  nav { width: 100%; } /* Fix for older webkit versions */
-}
-
-/* ------- Print ------- */
-
-@media print {
-
-  nav, .lightbox:target:after { display: none; }
-
-  article, figure, img {
-    page-break-inside: avoid;
-    break-inside: avoid;
-  }
-
-  /* Inline footnotes */
-
-  label + input + small { display: inline; }
-  label + input + small:before { content: "["; }
-  label + input + small:after { content: "]"; }
-
-}
-</style> <!-- }}} -->
-
+  <meta property="og:title" content="solc.uk">
+  <meta property="og:description" content="Personal website of devsjc, a data engineer based in the
+  UK.">
+  <meta property="og:image" content="static/assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="icon" href="static/assets/favicon.svg" sizes="any" type="image/svg+xml">
+  <link rel="stylesheet" href="static/assets/style.css">
 </head>
     
 <body>
   
-  <svg style="display: none" version="2.0" xmlns="http://www.w3.org/2000/svg"> <!-- {{{ -->
-    <defs>
-      <symbol id="devicon" viewbox="0 0 400 400" xml:space="preserve">
-        <circle fill="#98443c" cx="407" cy="900" r="1050"/>
-        <circle fill="#b66e51" cx="407" cy="1120" r="1050"/>
-        <circle fill="#020101" cx="407" cy="1330" r="1050"/>
-        <circle fill="#d2c165" cx="407" cy="172" r="210"/>
-        <circle fill="#fefffe" cx="407" cy="172" r="108"/>
-      </symbol>
-    </defs>
-    <use href="#devicon" />
-  </svg> <!-- }}} -->
-
   <header>
-    <svg width="32" height="32">
-      <use href="#devicon" />
-    </svg>
-  <h1>
-      <a href="#home">SOL COTTON</a>
+    <h1>
+      <a href="#home">
+        <img loading="lazy" alt="Logo" src="static/assets/favicon.svg" width="32" height="32">
+      </a>
     </h1>
     <nav>
       <a href="#experience">Experience</a>
       <a href="#blog">Blog</a>
       <a href="#music">Music</a>
+
+      <a href="https://github.com/devsjc" class="social">GitHub</a>
+      <a href="https://linkedin.com/in/solcotton/" class="social">LinkedIn</a>
     </nav>
   </header>
 
   <main>
 
-    <section id="home"> <!-- {{{ -->
+    <section id="home">
 
-      <div class="slides">
-        <figure class="cover">
-            <p>or go full bleed</p>
-        </figure>
+      <h1>home //</h1>
 
-    </section> <!-- }}} -->
+      <p>Hello! This is the website of me, Sol.</p> 
 
-    <section id="experience"> <!-- {{{ -->
+      <p>I'm a software engineer based in the UK, primarily working as a Data Engineer but -
+      as is usually the case with DEng - with that comes a lot of experience architecting and
+      building entire backend systems, deployment infrastructure, developer tooling, CI/CD
+      pipelines, and so on. Take a look at
+      <a href="#experience">experience</a> for a more complete overview.</p>
 
-      <p>This is the about page. <a href="#another-page">This is a link to another page</a>.</p>
+      <p>I am a big advocate for not screwing up the planet on which we live, hence my current
+      position in the renewable energy sector (and hence my exremely minimalist website!).
+      I'm fascinated by physics; the very large, and the very small.</p>
 
-      <figure> 
-        <a href="#img-about">
-          <img loading="lazy" alt="" src="template_files/bbb_009.png" width="1200" height="600">
-        </a>
-        <figcaption>Example of an image with a link to a larger version.</figcaption>
-      </figure>
+      <p>I also enjoy coding in my spare time (imagine!) - I maintain a personal kubernetes server
+      at home, on which I run a suite of open source services. I also write occasional blog posts about
+      programming, which you can find in the <a href="#blog">blog</a> section of this site.
+      (During lockdown I even wrote an android app so that my friends and I could play games
+      remotely!)</p>
 
     </section>
-    <!-- }}} -->
 
-    <section id="blog"> <!-- {{{ -->
+    <section id="experience">
+
+      <h1>work experience //</h1>
+
+      <p>I'm going to put this section together soon, but for now, see my linkedin for my CV.</p>
+
+    </section>
+
+    <section id="blog">
 
       <h1>devsjc blogs //</h1>
 
       <p>I occasionally write about thoughts or experiences with programming. Below is a list of
-      these posts. They come in two flavours, those being regular posts, and "chasers", which are
+      these posts. They come in two flavours, those being regular posts, and <em>chasers</em>, which are
       shorter posts primarily used as a reminder to myself about something I want to remember.</p>
 
-      <p><em>Posts are markdown docs, converted to HTML via marked.js; as
-        such, I'm afraid you'll need JavaScript enabled to read them.</em></p>
+      <p><em><small>Posts are markdown docs, converted to HTML via marked.js; as
+          such, I'm afraid you'll need JavaScript enabled to read them.</small></em></p>
 
       </br>
 
@@ -498,7 +92,7 @@ a:before {
         <li>
           <time>2024-11-29</time>
           <a href="#p20241129" data-src="static/blogs/20241129-chaser-bootable-win-usb.md">
-            chaser // How to create a bootable Windows USB from a Mac
+            [chaser] How to create a bootable Windows USB from a Mac
           </a>
         </li>
         <li>
@@ -510,183 +104,138 @@ a:before {
         <li>
           <time>2024-04-06</time>
           <a href="#p20240406" data-src="static/blogs/20240406-chaser-vim-91-debian.md">
-            chaser // How to install vim 9.1 on Debian
+            [chaser] How to install Vim 9.1 on Debian
           </a>
         </li>
         <li>
           <time>2024-04-05</time>
           <a href="#p20240405" data-src="static/blogs/20240405-vim-as-data-ide.md">
-            Database connections in the terminal: using vim as a data IDE
+            Database connections in the terminal: using Vim as a data IDE
+          </a>
+        </li>
+        <li>
+          <time>2023-09-15</time>
+          <a href="#p20230915" data-src="static/blogs/20230915-jb-to-vim.md">
+            From JetBrains to Vim
           </a>
         </li>
       </ul>
 
-
     </section>
 
+    <!-- Blog sections populated on demand -->
     <section id="p20250411" class="blog-content"></section>
     <section id="p20241129" class="blog-content"></section>
     <section id="p20240627" class="blog-content"></section>
     <section id="p20240406" class="blog-content"></section>
     <section id="p20240405" class="blog-content"></section>
-    <!-- }}} -->
+    <section id="p20230915" class="blog-content"></section>
     
-    <section id="portfolio"> <!-- {{{ PORTFOLIO -->
+    <section id="music">
 
-      <div class="slides">
-        <figure><img loading="lazy" alt="" src="template_files/bbb_007.png"></figure>
-        <figure><img loading="lazy" alt="" src="template_files/bbb_005.png"></figure>
-        <figure><img loading="lazy" alt="" src="template_files/bbb_007.png"></figure>
-        <figure>
-          <p>You could also have text over here…</p>
-        </figure>
-        <figure>
-          <img loading="lazy" alt="" src="template_files/bbb_003.png">
-          <figcaption>…or image captions</figcaption>
-        </figure>
-        <figure style="background: rgb(253, 203, 57); --darkreader-inline-bgcolor: var(--darkreader-background-fdcb39, #7f5f01); --darkreader-inline-bgimage: none;" data-darkreader-inline-bgcolor="" data-darkreader-inline-bgimage="">
-          <img loading="lazy" alt="" src="template_files/bbb_005.png">
-          <figcaption>add a solid background</figcaption>
-        </figure>
-        <figure class="cover">
-          <img loading="lazy" alt="" src="template_files/tumblr_myopxy8uJI1qz4vi0o1_1280.jpg">
-          <p style="color: rgb(255, 255, 255); --darkreader-inline-color: var(--darkreader-text-ffffff, #e8e6e3);" data-darkreader-inline-color="">or go full bleed</p>
-        </figure>
-      </div>
+      <h1>face the music //</h1>
 
-    </section> <!-- }}} -->
-      
-    <section id="another-page"> <!-- ANOTHER PAGE -->
-      
-      <p>This page is not referenced in the menu, yet it exists.</p>
-      <p><a href="#about">← back</a></p>
-      
+      <p>At some point I'll put some links to my musical endeavours here! (Or maybe I'll chicken out
+      of it!)</p>
+
     </section>
-    
+      
   </main>
-  
-  <!-- ----------
-  LIGHTBOX IMAGES
-  ----------- -->
 
-  <!-- PHOTOS grid -->
-  
-  <a href="#photos" class="lightbox" id="img-01"><img loading="lazy" alt="" src="template_files/bbb_002.png"></a>
-  <a href="#photos" class="lightbox" id="img-02"><img loading="lazy" alt="" src="template_files/bbb_007.png"></a>
-  <a href="#photos" class="lightbox" id="img-03"><img loading="lazy" alt="" src="template_files/bbb_005.png"></a>
-  <a href="#photos" class="lightbox" id="img-04"><img loading="lazy" alt="" src="template_files/bbb_002.png"></a>
-  <a href="#photos" class="lightbox" id="img-05"><img loading="lazy" alt="" src="template_files/bbb_007.png"></a>
-  <a href="#photos" class="lightbox" id="img-06"><img loading="lazy" alt="" src="template_files/bbb_005.png"></a>
-  <a href="#photos" class="lightbox" id="img-07"><img loading="lazy" alt="" src="template_files/bbb_002.png"></a>
-  <a href="#photos" class="lightbox" id="img-08"><img loading="lazy" alt="" src="template_files/bbb_007.png"></a>
-  <a href="#photos" class="lightbox" id="img-09"><img loading="lazy" alt="" src="template_files/bbb_005.png"></a>
-  <a href="#photos" class="lightbox" id="img-10"><img loading="lazy" alt="" src="template_files/bbb_002.png"></a>
-  <a href="#photos" class="lightbox" id="img-11"><img loading="lazy" alt="" src="template_files/bbb_007.png"></a>
-  <a href="#photos" class="lightbox" id="img-12"><img loading="lazy" alt="" src="template_files/bbb_005.png"></a>
-  <a href="#photos" class="lightbox" id="img-13"><img loading="lazy" alt="" src="template_files/bbb_002.png"></a>
-  <a href="#photos" class="lightbox" id="img-14"><img loading="lazy" alt="" src="template_files/bbb_007.png"></a>
-  <a href="#photos" class="lightbox" id="img-15"><img loading="lazy" alt="" src="template_files/bbb_005.png"></a>    
-  
-  <!-- Other images -->
-  
-  <a href="#about" class="lightbox" id="img-about"><img loading="lazy" alt="" src="template_files/bbb_004.png"></a>
-  
-  
-</body>
-
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-<script>
-  const loadMarkdown = async () => {
-    const hash = window.location.hash;
-    if (!hash) return;
-
-    const targetId = hash.substring(1);
-    const targetSection = document.querySelector(`[id="${targetId}"]`);
-
-    if (targetSection && targetSection.classList.contains('blog-content') && !targetSection.dataset.loaded) {
-      const triggerLink = document.querySelector(`a[href="${hash}"]`);
-      const source = triggerLink?.getAttribute('data-src');
-
-      if (source) {
-        try {
-          const response = await fetch(source);
-          if (!response.ok) throw new Error('File not found');
-
-          let rawText = await response.text();
-          let frontmatter = {};
-          let markdownContent = rawText;
-
-          const fmMatch = rawText.match(/^---\s*([\s\S]*?)\s*---/);
-
-          if (fmMatch) {
-            const yamlBlock = fmMatch[1];
-            markdownContent = rawText.replace(fmMatch[0], '').trim();
-
-            yamlBlock.split('\n').forEach(line => {
-              const [key, ...val] = line.split(':');
-              if (key && val) {
-                frontmatter[key.trim()] = val.join(':').trim().replace(/^["']|["']$/g, '');
-              }
-            });
-          }
-
-         const renderer = new marked.Renderer();
-
-         renderer.heading = ({ text, depth }) => {
-           const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-           return `<h${depth} id="${escapedText}">${text}</h${depth}>`;
-         };
-          // Intercept Markdown Links
-         renderer.link = ({ href, text }) => {
-           if (href.startsWith('#')) {
-             return `<a href="${href}" class="internal-link">${text}</a>`;
-           }
-           return `<a href="${href}">${text}</a>`;
-         };
-         marked.setOptions({ renderer });
-
-         targetSection.innerHTML = `
-          <article>
-            <p><a href="#blog">← Back</a></p>
-            </br>
-            <h1>
-              ${frontmatter.title || 'Untitled'}
-            </h1
-            ${frontmatter.subtitle ? ` <span><em><small>// ${frontmatter.subtitle}</small></em></span>` : ''}
-            <p><small>${frontmatter.date || ''} • By ${frontmatter.author || 'Anonymous'}</small></p>
-            <hr>
-
-            ${marked.parse(markdownContent)}
-
-          </article>
-          `;
-
-          targetSection.dataset.loaded = "true";
-        } catch (err) {
-          targetSection.innerHTML = `<article><p>Post content could not be loaded.</p></article>`;
-        }
-      }
-    }
-  };
-
-  window.addEventListener('hashchange', loadMarkdown);
-  window.addEventListener('DOMContentLoaded', loadMarkdown);
-  document.addEventListener('click', (e) => {
-    const link = e.target.closest('.internal-link');
-    if (link) {
-      e.preventDefault(); // Stop the URL from changing
-      const targetId = link.getAttribute('href').substring(1);
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const loadMarkdown = async () => {
       const hash = window.location.hash;
-      const currentSection = document.querySelector(hash);
-      if (currentSection) {
-        const targetEl = currentSection.querySelector(`#${targetId}`);
-        if (targetEl) {
-          targetEl.scrollIntoView({ behavior: 'smooth' });
+      if (!hash) return;
+
+      const targetId = hash.substring(1);
+      const targetSection = document.querySelector(`[id="${targetId}"]`);
+
+      if (targetSection && targetSection.classList.contains('blog-content') && !targetSection.dataset.loaded) {
+        const triggerLink = document.querySelector(`a[href="${hash}"]`);
+        const source = triggerLink?.getAttribute('data-src');
+
+        if (source) {
+          try {
+            const response = await fetch(source);
+            if (!response.ok) throw new Error('File not found');
+
+            let rawText = await response.text();
+            let frontmatter = {};
+            let markdownContent = rawText;
+
+            const fmMatch = rawText.match(/^---\s*([\s\S]*?)\s*---/);
+
+            if (fmMatch) {
+              const yamlBlock = fmMatch[1];
+              markdownContent = rawText.replace(fmMatch[0], '').trim();
+
+              yamlBlock.split('\n').forEach(line => {
+                const [key, ...val] = line.split(':');
+                if (key && val) {
+                  frontmatter[key.trim()] = val.join(':').trim().replace(/^["']|["']$/g, '');
+                }
+              });
+            }
+
+           const renderer = new marked.Renderer();
+
+           renderer.heading = ({ text, depth }) => {
+             const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+             return `<h${depth} id="${escapedText}">${text}</h${depth}>`;
+           };
+            // Intercept Markdown Links
+           renderer.link = ({ href, text }) => {
+             if (href.startsWith('#')) {
+               return `<a href="${href}" class="internal-link">${text}</a>`;
+             }
+             return `<a href="${href}">${text}</a>`;
+           };
+           marked.setOptions({ renderer });
+
+           targetSection.innerHTML = `
+            <article>
+              <p><a href="#blog">← Back</a></p>
+              </br>
+              <h1>
+                ${frontmatter.title || 'Untitled'}
+              </h1
+              ${frontmatter.subtitle ? ` <span><em><small>${frontmatter.subtitle} //</small></em></span>` : ''}
+              <p><small>${frontmatter.date || ''} • By ${frontmatter.author || 'Anonymous'}</small></p>
+              <hr>
+
+              ${marked.parse(markdownContent)}
+
+            </article>
+            `;
+
+            targetSection.dataset.loaded = "true";
+          } catch (err) {
+            targetSection.innerHTML = `<article><p>Post content could not be loaded.</p></article>`;
+          }
         }
       }
-    }
-  });
-</script>
+    };
+
+    window.addEventListener('hashchange', loadMarkdown);
+    window.addEventListener('DOMContentLoaded', loadMarkdown);
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('.internal-link');
+      if (link) {
+        e.preventDefault(); // Stop the URL from changing
+        const targetId = link.getAttribute('href').substring(1);
+        const hash = window.location.hash;
+        const currentSection = document.querySelector(hash);
+        if (currentSection) {
+          const targetEl = currentSection.querySelector(`#${targetId}`);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
 
 </html>
