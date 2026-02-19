@@ -1,6 +1,6 @@
 ---
 title: "How uv Helps Me to Not Hate Python"
-subtitle: "And how to let it help you, too"
+subtitle: "and how to let it help you, too"
 description: "A guide to using uv across the python development lifecycle."
 author: devsjc
 date: 2025-04-11
@@ -26,10 +26,9 @@ $ curl -LsSf https://astral.sh/uv/install.sh | sh
 and lets see how it can help you hate python a little bit less, too.
 
 
-For local development
-=====================
+## For local development
 
-I have [already written a blog post](https://devsjc.github.io/blog/20240627-the-complete-guide-to-pyproject-toml/)
+I have [already written a blog post](#p20240406)
 on using `pyproject.toml` to manage Python projects, in which the claim is made that it can be laid
 out in a tool-agnostic manner. Helpfully, `uv` isn't bucking that trend, and so, provided that I
 am cloning a repository that has a `pyproject.toml` file similar to as in that post, getting started
@@ -116,8 +115,7 @@ too.
 </aside>
 
 
-In Docker containers
-====================
+## In Docker containers
 
 Building a container is also improved using `uv`. Here is an example Dockerfile, with comments
 describing each stage, that is designed to be optimal for production use. It uses a layered
@@ -182,8 +180,7 @@ dependency install step, and enable cahce useage, as it isn't copied over into t
 anyway so won't affect image size - however `uv` is so fast I didn't really notice much difference!
 
 
-Publishing to PyPI
-==================
+## Publishing to PyPI
 
 Publishing to PyPI is, again, dead easy and quick. Just get a PyPI token (or even better, set up
 [trusted publishing](https://docs.pypi.org/trusted-publishers/)) and then
@@ -195,8 +192,7 @@ $ uv publish -t <token>
 
 This is very easy to port to CI/CD pipelines.
 
-Final thoughts
-==============
+## Final thoughts
 
 In summary then, I'm indebted to Charlie Marsh and the [astral.sh](https://docs.astral.sh/) team
 for bringing the Python ecosystem into a state in which even the most anti-python developers, 

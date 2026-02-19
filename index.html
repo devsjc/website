@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+  <title>solc.uk</title>
+  <meta name="description" content="Personal website of devsjc, a data engineer based in the
+  UK.">
+  
+  <meta property="og:title" content="solc.uk">
+  <meta property="og:description" content="Personal website of devsjc, a data engineer based in the
+  UK.">
+  <meta property="og:image" content="static/assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="icon" href="static/assets/favicon.svg" sizes="any" type="image/svg+xml">
+  <link rel="stylesheet" href="static/assets/style.css">
+</head>
+    
+<body>
+  
+  <header>
+    <h1>
+      <a href="#home">
+        <img loading="lazy" alt="Logo" src="static/assets/favicon.svg" width="32" height="32">
+      </a>
+    </h1>
+    <nav>
+      <a href="#experience">Experience</a>
+      <a href="#blog">Blog</a>
+      <a href="#music">Music</a>
+
+      <a href="https://github.com/devsjc" class="social">GitHub</a>
+      <a href="https://linkedin.com/in/solcotton/" class="social">LinkedIn</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section id="home">
+
+      <h1>home //</h1>
+
+      <p>Hello! This is the website of me, Sol.</p> 
+
+      <p>I'm a software engineer based in the UK, primarily working as a Data Engineer but -
+      as is usually the case with DEng - with that comes a lot of experience architecting and
+      building entire backend systems, deployment infrastructure, developer tooling, CI/CD
+      pipelines, and so on. Take a look at
+      <a href="#experience">experience</a> for a more complete overview.</p>
+
+      <p>I am a big advocate for not screwing up the planet on which we live, hence my current
+      position in the renewable energy sector (and hence my exremely minimalist website!).
+      I'm fascinated by physics; the very large, and the very small.</p>
+
+      <p>I also enjoy coding in my spare time (imagine!) - I maintain a personal kubernetes server
+      at home, on which I run a suite of open source services. I also write occasional blog posts about
+      programming, which you can find in the <a href="#blog">blog</a> section of this site.
+      (During lockdown I even wrote an android app so that my friends and I could play games
+      remotely!)</p>
+
+    </section>
+
+    <section id="experience">
+
+      <h1>work experience //</h1>
+
+      <p>I'm going to put this section together soon, but for now, see my linkedin for my CV.</p>
+
+    </section>
+
+    <section id="blog">
+
+      <h1>devsjc blogs //</h1>
+
+      <p>I occasionally write about thoughts or experiences with programming. Below is a list of
+      these posts. They come in two flavours, those being regular posts, and <em>chasers</em>, which are
+      shorter posts primarily used as a reminder to myself about something I want to remember.</p>
+
+      <p><em><small>Posts are markdown docs, converted to HTML via marked.js; as
+          such, I'm afraid you'll need JavaScript enabled to read them.</small></em></p>
+
+      </br>
+
+      <ul>
+        <li>
+          <time>2025-04-11</time>
+          <a href="#p20250411" data-src="static/blogs/20250411-praising-uv.md">
+            How uv helps me not hate Python
+          </a>
+        </li>
+        <li>
+          <time>2024-11-29</time>
+          <a href="#p20241129" data-src="static/blogs/20241129-chaser-bootable-win-usb.md">
+            [chaser] How to create a bootable Windows USB from a Mac
+          </a>
+        </li>
+        <li>
+          <time>2024-06-27</time>
+          <a href="#p20240627" data-src="static/blogs/20240627-pyproject-guide.md">
+            The complete guide to pyproject.toml
+          </a>
+        </li>
+        <li>
+          <time>2024-04-06</time>
+          <a href="#p20240406" data-src="static/blogs/20240406-chaser-vim-91-debian.md">
+            [chaser] How to install Vim 9.1 on Debian
+          </a>
+        </li>
+        <li>
+          <time>2024-04-05</time>
+          <a href="#p20240405" data-src="static/blogs/20240405-vim-as-data-ide.md">
+            Database connections in the terminal: using Vim as a data IDE
+          </a>
+        </li>
+        <li>
+          <time>2023-09-15</time>
+          <a href="#p20230915" data-src="static/blogs/20230915-jb-to-vim.md">
+            From JetBrains to Vim
+          </a>
+        </li>
+      </ul>
+
+    </section>
+
+    <!-- Blog sections populated on demand -->
+    <section id="p20250411" class="blog-content"></section>
+    <section id="p20241129" class="blog-content"></section>
+    <section id="p20240627" class="blog-content"></section>
+    <section id="p20240406" class="blog-content"></section>
+    <section id="p20240405" class="blog-content"></section>
+    <section id="p20230915" class="blog-content"></section>
+    
+    <section id="music">
+
+      <h1>face the music //</h1>
+
+      <p>At some point I'll put some links to my musical endeavours here! (Or maybe I'll chicken out
+      of it!)</p>
+
+    </section>
+      
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const loadMarkdown = async () => {
+      const hash = window.location.hash;
+      if (!hash) return;
+
+      const targetId = hash.substring(1);
+      const targetSection = document.querySelector(`[id="${targetId}"]`);
+
+      if (targetSection && targetSection.classList.contains('blog-content') && !targetSection.dataset.loaded) {
+        const triggerLink = document.querySelector(`a[href="${hash}"]`);
+        const source = triggerLink?.getAttribute('data-src');
+
+        if (source) {
+          try {
+            const response = await fetch(source);
+            if (!response.ok) throw new Error('File not found');
+
+            let rawText = await response.text();
+            let frontmatter = {};
+            let markdownContent = rawText;
+
+            const fmMatch = rawText.match(/^---\s*([\s\S]*?)\s*---/);
+
+            if (fmMatch) {
+              const yamlBlock = fmMatch[1];
+              markdownContent = rawText.replace(fmMatch[0], '').trim();
+
+              yamlBlock.split('\n').forEach(line => {
+                const [key, ...val] = line.split(':');
+                if (key && val) {
+                  frontmatter[key.trim()] = val.join(':').trim().replace(/^["']|["']$/g, '');
+                }
+              });
+            }
+
+           const renderer = new marked.Renderer();
+
+           renderer.heading = ({ text, depth }) => {
+             const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+             return `<h${depth} id="${escapedText}">${text}</h${depth}>`;
+           };
+            // Intercept Markdown Links
+           renderer.link = ({ href, text }) => {
+             if (href.startsWith('#')) {
+               return `<a href="${href}" class="internal-link">${text}</a>`;
+             }
+             return `<a href="${href}">${text}</a>`;
+           };
+           marked.setOptions({ renderer });
+
+           targetSection.innerHTML = `
+            <article>
+              <p><a href="#blog">← Back</a></p>
+              </br>
+              <h1>
+                ${frontmatter.title || 'Untitled'}
+              </h1
+              ${frontmatter.subtitle ? ` <span><em><small>${frontmatter.subtitle} //</small></em></span>` : ''}
+              <p><small>${frontmatter.date || ''} • By ${frontmatter.author || 'Anonymous'}</small></p>
+              <hr>
+
+              ${marked.parse(markdownContent)}
+
+            </article>
+            `;
+
+            targetSection.dataset.loaded = "true";
+          } catch (err) {
+            targetSection.innerHTML = `<article><p>Post content could not be loaded.</p></article>`;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('hashchange', loadMarkdown);
+    window.addEventListener('DOMContentLoaded', loadMarkdown);
+    document.addEventListener('click', (e) => {
+      const link = e.target.closest('.internal-link');
+      if (link) {
+        e.preventDefault(); // Stop the URL from changing
+        const targetId = link.getAttribute('href').substring(1);
+        const hash = window.location.hash;
+        const currentSection = document.querySelector(hash);
+        if (currentSection) {
+          const targetEl = currentSection.querySelector(`#${targetId}`);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

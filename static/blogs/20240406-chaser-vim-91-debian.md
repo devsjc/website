@@ -1,6 +1,6 @@
 ---
-title: "chaser // how to install Vim 9.1 on Debian Bookworm"
-subtitle: "(Or any package from debian testing)"
+title: "[chaser] how to install Vim 9.1 on Debian Bookworm"
+subtitle: "or any package from debian testing"
 author: "devsjc"
 date: "2024-04-06"
 tags: [vim, debian]

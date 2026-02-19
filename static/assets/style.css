@@ -1,0 +1,389 @@
+@font-face {
+  font-display: swap;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/raleway-v37-latin-300.woff2') format('woff2'); 
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 300;
+  src: url('../fonts/raleway-v37-latin-300italic.woff2') format('woff2'); 
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/raleway-v37-latin-regular.woff2') format('woff2'); 
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Raleway';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../fonts/raleway-v37-latin-italic.woff2') format('woff2'); 
+}
+@font-face {
+  font-display: swap;
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../fonts/raleway-v37-latin-500italic.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Archivo Black';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/archivo-black-v23-latin-regular.woff2') format('woff2'); 
+}
+
+@font-face {
+  font-display: swap; 
+  font-family: 'Google Sans Code';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../fonts/google-sans-code-v14-latin-300.woff2') format('woff2');
+}
+
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+
+  /* Color scheme */
+  --textcolor: rgb(47, 5, 18);
+  --bgcolor: rgb(243, 239, 213);
+  --highlight: rgb(184, 77, 52);
+}
+
+@media (prefers-color-scheme: dark) {
+  * {
+    --textcolor: rgb(245, 245, 251);
+    --bgcolor: rgb(29, 25, 25);
+    --highlight: rgb(207, 194, 144);
+  }
+
+  body {
+    font-weight: 300;
+  }
+}
+
+body {
+  font-size: 18px;
+  font-family: Raleway, system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--textcolor);
+  background: var(--bgcolor);
+  position: relative;
+  max-width: 56em;
+  min-height: 95vh;
+  margin: 0 auto;  /* centers the layout */
+  scrollbar-gutter: stable;
+  padding-bottom: 4em; /* for footer */
+}
+
+/* ------- Sections ------- */
+
+section {
+  padding: calc(6em + 5vw) 5vw calc(6em + 8vw) 5vw;
+  /* ! Everything below is needed ! */
+  display: none;
+  position: absolute;
+  top: 0;
+  min-height: 100vh;
+  width: 100%;
+  background: var(--bgcolor);
+}
+
+section:target { /* Show section */
+  display: block;
+}
+
+section#home { /* Show #home by default */
+  display: block;
+}
+
+/* ------- Header ------- */
+
+header {
+  padding: 5vw 5vw 0 5vw;
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+}
+
+header h1 {
+  font-size: 1em;
+  flex: 1; /* pushes nav to the right */
+  white-space: nowrap;
+  padding: 0 5vw .5em 0;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+nav a:not(.social):last-of-type::after {
+  content: "//";
+  margin-left: 2vw;
+  margin-right: 2vw;
+  opacity: 0.9;
+  color: var(--textcolor);
+  pointer-events: none;
+}
+
+.social, .social ~ a {
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+
+/* ------- General ------- */
+
+a {
+  text-decoration: none;
+  color: var(--highlight);
+}
+
+a:hover {
+  border-bottom: 1px solid;
+}
+
+h2,h3,h4,h5,h6 {
+  font-weight: 500;
+	line-height: 1;
+  margin: 1.8em 0 1em 0;
+  scroll-margin-top: 2em;
+}
+
+h1 {
+  font-family: Archivo Black, system-ui, sans-serif;
+	font-size: 3rem;
+  line-height: 1;
+  margin: .6em 0 1.2em 0;
+}
+
+h2 {
+	font-size: 1.65rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+}
+
+p, ul, ol, article {
+  max-width: 60ch; /* Limit line-length to 60 characters */
+  margin-bottom: 1em;
+  line-height: 1.4;
+  letter-spacing: .011em;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul li::marker {
+  content: "\2022   ";
+}
+
+li {
+  margin-bottom: .2em;
+}
+
+ul, ol {
+  padding-left: 2ch;
+}
+
+#blog ul li {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 0.5em;
+}
+
+#blog ul li time {
+  flex-shrink: 0;
+  width: 6rem;
+  font-family: Google Sans Code, ui-monospace, monospace;
+  font-size: .8em;
+  opacity: 0.6;
+}
+
+small {
+  font-size: .85em;
+}
+
+hr {
+  height: 1px;
+  border: 0;
+  background: currentColor;
+  opacity: .1;
+  margin: 1.2em 0;
+}
+
+abbr[title]:hover {
+  opacity: .7;
+  cursor: help;
+}
+
+blockquote {
+  padding-left: 2ch;
+  opacity: .7;
+  margin-bottom: .6em;
+  position: relative;
+}
+
+blockquote:before {
+  content: "";
+  position:absolute;
+  left: 0;
+  top: .3em;
+  bottom: .3em;
+  background: currentColor;
+  width: 1px;
+  opacity: .2;
+}
+
+img, svg, video, audio {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  fill: currentColor;
+}
+
+code, textarea {
+  font-family: Google Sans Code, ui-monospace, monospace;
+  font-size: 0.9em;
+  opacity: .7;
+}
+
+pre, textarea {
+  font-size: .9em;
+  color: inherit;
+  line-height:inherit;
+  padding:.6em .9em;
+  margin: 1.8em 0 1.8em 0;
+  position: relative;
+  display: block;
+  width: 100%;
+  white-space: pre;
+  border:0;
+  border-radius: .5rem;
+  background: oklch(from var(--bgcolor) calc(l + 0.1) c h);
+  box-decoration-break: slice
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+  word-wrap: normal;
+}
+
+/* Inline footnotes */
+
+label {
+  cursor: pointer;
+  vertical-align: super;
+  line-height: 1;
+  font-size: .75em;
+  padding-left: .1em;
+}
+
+label:hover {
+  color: var(--highlight);
+}
+
+label:before {content:"[";}
+label:after {content:"]";}
+
+label + input,
+label + input + small {
+  display: none;
+}
+
+input:checked + small {
+  display: block;
+  padding: .8em 0 1em 2.5vw;;
+}
+
+/* Figures */
+
+figure {
+  margin: 2em 0 1.5em 0;
+}
+
+figure figcaption {
+  margin: 0.8em 0 0 0;
+  font-size: .85em;
+  opacity: .7;
+}
+
+/* Responsive video embeds */
+
+figure.video {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+}
+
+figure.video iframe, figure.video object, figure.video embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  visibility: hidden; /* so loading="lazy" should work */
+}
+
+section:target iframe {
+  visibility: visible;
+}
+
+/* External links */
+
+a[href*="//"]:after {
+  font-weight: 300;
+  font-size: .85em;
+  content: "\2197"; /* top right arrow: â†— */
+  color: var(--textcolor);
+  opacity: .25;
+}
+
+a[href*="//"]:hover:after {
+  color: var(--highlight);
+  opacity: 1;
+}
+
+/* File links */
+
+a:before {
+  font-size: .7em;
+  margin-right: .4em;
+}
+
+/* ------- Smaller screens ------- */
+
+@media only screen and (max-width: 680px) {
+  body { font-size: 16px; }
+
+  #blog ul li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.2rem;
+    margin-bottom: 1.2em;
+    text-align: left;
+  }
+
+  #blog ul li time {
+    width: auto; /* Let it sit naturally on top */
+  }
+}
+

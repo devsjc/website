@@ -7,16 +7,8 @@ date: "2024-04-05"
 tags: [vim, ssh, sql]
 ---
 
-<figure>
-  <img src="/images/dbui.png" alt="Vim DBUI" />
-  <figcaption>Vim running DBUI</figcaption>
-</figure>
 
-Like the colour scheme? See [vim-jb](https://github.com/devsjc/vim-jb)!
-
-
-Background: What's the Aim?
-===========================
+## Background: What's the Aim?
 
 As a developer, you’ll inevitably find yourself having to interact with databases. There are
 GUI tools available ([DataGrip](https://www.jetbrains.com/datagrip/), [DBeaver](https://dbeaver.io/)),
@@ -37,8 +29,7 @@ or two about handling database connections in the terminal regardless! It assume
 with both Vim and PostgreSQL/JDBC connection strings, but should be accessible to anyone with a bit
 of experience in either.
 
-Vim Plugins
-===========
+## Vim Plugins
 
 Handily, there already exists a set of high quality vim plugins providing much of the visual and
 interactive functionality you’d expect from a GUI database tool. The plugins are called
@@ -66,8 +57,8 @@ including running queries, viewing tables, and managing connections. The UI plug
 visual interface for these commands, and can be opened with `:DBUI`. Opening the UI now won’t
 show much however, as we haven’t defined any database connections! Lets do that next.
 
-Defining Connections
-====================
+## Defining Connections
+
 A useful feature of any Database IDE is the ability to define connections to databases, so you can
 easily interact and switch between instances without having to remember the credentials,
 connection strings, or other details. The `vim-dadbod-ui` plugin ships with a few implementations
@@ -75,8 +66,7 @@ of this feature, but we will focus on the `:DBUIAddConnection` command, which pr
 benefits over the others, chiefly enabling restart-persistent global access, and a reducing ease of
 accidental committing of credentials to version control.
 
-Local connections
------------------
+### Local connections
 
 For local databases, connection is very straightforward. The connection url is familiar to those
 you might have set up in your GUIs, so to add a local PosrgresSQL database connection to
@@ -99,8 +89,7 @@ More often than not the databases you’ll be working with in production will no
 machine, but rather hosted on some server or cloud provider. In these cases, you’ll often first
 have to set up an SSH tunnel to access the database, which we’ll cover next.
 
-Remote Connections: SSH Tunnels and PortForwards
-------------------------------------------------
+### Remote Connections: SSH Tunnels and PortForwards
 
 Remote databases can’t necessarily be accessed directly, as they are often hosted in private
 networks. For those that can, such as BigQuery or MongoDB, connecting to them is similarly
@@ -186,8 +175,7 @@ at port `5000`, so the connection string can be added to `vim-dadbod-ui` with th
 ```
 
 
-Background Tunnels: Vim Dispatch
-================================
+## Background Tunnels: Vim Dispatch
 
 The SSH tunnel commands described above are useful, but they require a terminal window to be open
 and the command to be running at all times - not very streamlined. Ideally, the creation and
@@ -208,8 +196,7 @@ reasonably efficient, Vim database IDE workflow:
 Now we are able to view the tables using the vim-dadbod-ui interface! No remembering connection
 strings or credentials, and no need to keep a terminal window open for the SSH tunnel.
 
-Wrap Up
-=======
+## Wrap Up
 
 Thus completes our setup for a vim-based database IDE. A lot of the heavy lifting in terms of ease
 here is in fact done using the SSH config file.
