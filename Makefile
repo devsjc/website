@@ -7,4 +7,5 @@ bundle: clean
 	@mkdir -p dist
 	@cp -r static dist/
 	@cp index.html dist/
+	@cp robots.txt dist/
 
