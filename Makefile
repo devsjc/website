@@ -9,3 +9,7 @@ bundle: clean
 	@cp index.html dist/
 	@cp robots.txt dist/
 
+.PHONY: serve
+serve: bundle
+	@cd dist && uv run python -m http.server
+
