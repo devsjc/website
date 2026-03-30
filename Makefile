@@ -8,6 +8,7 @@ bundle: clean
 	@cp -r static dist/
 	@cp index.html dist/
 	@cp robots.txt dist/
+	@cp static/assets/favicon.ico dist/
 
 .PHONY: serve
 serve: bundle
