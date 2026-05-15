@@ -1,0 +1,30 @@
+pyproject-guide-internal:
+  type: Web
+  title: "The Complete Guide to pyproject.toml"
+  url: "https://solc.uk/pyproject-guide.html"
+
+uncaring-developer:
+  type: Web
+  title: "You Can't Teach Caring"
+  author: "Jos Visser"
+  url: "https://josvisser.substack.com/p/you-cant-teach-caring"
+
+charlie-bsky:
+  type: Web
+  title: "Charlie Marsh's Post on static type checking"
+  url: "https://bsky.app/profile/crmarsh.com/post/3lgvhzdfrps26"
+
+trusted-publishing:
+  type: Web
+  title: "Trusted Publishers"
+  url: "https://docs.pypi.org/trusted-publishers/"
+
+astral-docs:
+  type: Web
+  title: "Astral Documentation"
+  url: "https://docs.astral.sh/"
+
+jack-kelly-bsky:
+  type: Web
+  title: "Jack Kelly's Post"
+  url: "https://bsky.app/profile/jack-kelly.com/post/3ldijzckh6c2c"

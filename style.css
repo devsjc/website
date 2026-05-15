@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@0;1&family=Space+Grotesk:wght@700&family=Space+Mono&display=swap');
+
+body {
+  font-family: 'Space Grotesk', Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+main {
+  display: grid;
+  grid-template-rows: 100vh auto auto auto;
+  transition: 200ms ease-in-out;
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden; 
+  overflow-y: auto;
+}
+
+header {
+  background-color: #050505;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+header > div {
+  opacity: 1;
+  max-width: 800px;
+  flex-wrap: wrap;
+  gap: 0.2em 0.3em;
+}
+header > nav, header > a {
+  display: none;
+  text-decoration: none;
+}
+
+section {
+  background-color: #ffffff;
+  color: #050505;
+  display: none;
+  align-items: center;
+  padding: 2rem;
+  flex-direction: column;
+}
+section > div {
+  opacity: 1;
+  max-width: 800px;
+  flex-wrap: wrap;
+  gap: 0.2em 0.3em;
+}
+section:target {
+  display: flex;
+}
+
+/* When a section is targeted, only show the <a> in the header and hide the rest */
+main:has(section:target) {
+  grid-template-rows: 6vh auto 0vh 0vh;
+}
+main:has(section:target) header {
+  overflow: hidden;
+  padding: 0;
+}
+main:has(section:target) header > div {
+  display: none;
+}
+main:has(section:target) header > a {
+  display: inline;
+  color: #ffffff;
+  width: 100%;
+  text-align: center;
+}
+main:has(section:target) header > a:hover {
+  text-decoration: none;
+}
+ul {
+  max-width: 800px;
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+li > h1 {
+  margin-bottom: 5px;
+}
+
+/* Likewise, when a blog post is targeted */
+body.post main {
+  grid-template-rows: 6vh auto !important;
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
+}
+body.post header {
+  overflow: hidden;
+  padding: 0;
+}
+body.post header > div {
+  display: none;
+}
+body.post header > a {
+  display: inline;
+  color: #ffffff;
+  width: 100%;
+  text-align: center;
+}
+body.post section {
+  display: flex;
+}
+article {
+  max-width: 800px;
+  width: 100%;
+  line-height: 1.6;
+  font-weight: 400; 
+}
+article img { max-width: 100%; }
+article pre {
+  overflow-x: auto;
+  background: #f4f4f4;
+  padding: 1rem;
+  border-radius: 5px;
+  font-family: 'Space Mono', monospace;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/*----- TYPOGRAPHY -----*/
+h1 {
+  font-size: 42px;
+  letter-spacing: -0.05em;
+  line-height: 1.1;
+}
+h1 > span {
+  padding: 0 5px;
+  animation: flash 0.15s steps(1) forwards;
+  animation-delay: var(--d);
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/*----- ANIMATION -----*/
+@keyframes flash {
+  0% {
+    opacity: 1;
+    color: transparent;
+  }
+  50% {
+    opacity: 1;
+    color: #ff003c;
+  }
+  100% {
+    opacity: 1;
+    color: #ffffff;
+  }
+}
+
+.cursor {
+  opacity: 0;
+  color: #ff003c;
+  animation:
+    flash 0.1s steps(1) forwards,
+    blink 0.8s step-end infinite;
+  animation-delay: var(--d), var(--d);
+}
+
+@keyframes blink {
+  0% { opacity: 1; color: #ff003c; }
+  50% { opacity: 0; color: #ff003c; }
+}
+
+@media only screen and (max-width: 680px) {
+  body { font-size: 16px;}
+  a { text-decoration: underline; }
+}
