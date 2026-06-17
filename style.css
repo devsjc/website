@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital@0;1&family=Space+Grotesk:wght@700&family=Space+Mono&display=swap');
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Space Grotesk', Helvetica, Arial, sans-serif;
   font-size: 18px;
@@ -9,6 +13,7 @@ body {
 
 main {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: 100vh auto auto auto;
   transition: 200ms ease-in-out;
   width: 100vw;
@@ -117,8 +122,9 @@ article pre {
   padding: 1rem;
   border-radius: 5px;
   font-family: 'Space Mono', monospace;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 400;
+  max-width: 100%;
 }
 
 /*----- TYPOGRAPHY -----*/
@@ -171,6 +177,7 @@ a:hover {
 }
 
 @media only screen and (max-width: 680px) {
+  h1 { font-size: 30px; }
   body { font-size: 16px;}
   a { text-decoration: underline; }
 }
