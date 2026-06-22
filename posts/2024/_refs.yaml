@@ -1,0 +1,227 @@
+homebrew:
+  type: Web
+  title: "Homebrew: The Missing Package Manager for macOS (or Linux)"
+  url: https://brew.sh/
+
+ms-win10:
+  type: Web
+  title: "Download Windows 10 Disc Image (ISO File)"
+  author: Microsoft
+  url: https://www.microsoft.com/en-gb/software-download/windows10iso
+
+datagrip:
+  type: Web
+  title: "DataGrip"
+  url: "https://www.jetbrains.com/datagrip/"
+
+dbeaver:
+  type: Web
+  title: "DBeaver"
+  url: "https://dbeaver.io/"
+
+prev-article:
+  type: Web
+  title: "From JetBrains to Vim: a modern vim configuration and plugin set"
+  author: "devsjc"
+  url: "https://medium.com/@devsjc/from-jetbrains-to-vim-a-modern-vim-configuration-and-plugin-set-d58472a7d53d"
+
+vim-dadbod:
+  type: Web
+  title: "tpope/vim-dadbod"
+  url: "https://github.com/tpope/vim-dadbod"
+
+vim-dadbod-ui:
+  type: Web
+  title: "kristijanhusak/vim-dadbod-ui"
+  url: "https://github.com/kristijanhusak/vim-dadbod-ui"
+
+vim-dadbod-help:
+  type: Web
+  title: "dadbod.txt"
+  url: "https://github.com/tpope/vim-dadbod/blob/master/doc/dadbod.txt"
+
+vim-dadbod-ui-issue:
+  type: Web
+  title: "Issue #202: vim-dadbod-ui"
+  url: "https://github.com/kristijanhusak/vim-dadbod-ui/issues/202"
+
+vim-dispatch:
+  type: Web
+  title: "tpope/vim-dispatch"
+  url: "https://github.com/tpope/vim-dispatch"
+
+debian-vim-testing:
+  type: Web
+  title: "Debian -- Details of package vim in trixie"
+  url: "https://packages.debian.org/trixie/vim"
+
+pyproject-gist:
+  type: Web
+  title: "pyproject.toml gist"
+  author: "devsjc"
+  url: "https://gist.github.com/devsjc/86b896611d780e3e3c937b9c48682f31"
+
+poetry:
+  type: Web
+  title: "Poetry"
+  url: "https://python-poetry.org/"
+
+packaging-build-backend:
+  type: Web
+  title: "Choosing a build backend"
+  url: "https://packaging.python.org/en/latest/tutorials/packaging-projects/#choosing-a-build-backend"
+
+setuptools-backend:
+  type: Web
+  title: "Setuptools Build Backend"
+  url: "https://drive.google.com/file/d/1U5d5SiXLVkzDpS0i1dJIA4Hu5Qg704T9/view"
+
+uv:
+  type: Web
+  title: "uv: An extremely fast Python package and project manager"
+  url: "https://docs.astral.sh/uv/"
+
+setup-vulnerability:
+  type: Web
+  title: "Python package security flaw: setup.py vulnerability"
+  url: "https://www.siliconrepublic.com/enterprise/python-package-security-flaw-setup-vulnerability-hack-developers"
+
+src-layout:
+  type: Web
+  title: "src layout vs flat layout"
+  url: "https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/"
+
+python-packaging:
+  type: Web
+  title: "Packaging Python Projects"
+  url: "https://packaging.python.org/en/latest/tutorials/packaging-projects/"
+
+pip-install:
+  type: Web
+  title: "pip installation"
+  url: "https://pip.pypa.io/en/stable/installation/#installation"
+
+poetry-add-pep621:
+  type: Web
+  title: "poetry add but for PEP 621"
+  url: "https://discuss.python.org/t/poetry-add-but-for-pep-621/22957/21"
+
+setuptools-dev-mode:
+  type: Web
+  title: "Development Mode (setuptools)"
+  url: "https://setuptools.pypa.io/en/latest/userguide/development_mode.html"
+
+pytest:
+  type: Web
+  title: "pytest"
+  url: "https://pypi.org/project/pytest/"
+
+behave:
+  type: Web
+  title: "behave"
+  url: "https://pypi.org/project/behave/"
+
+moto:
+  type: Web
+  title: "moto"
+  url: "https://pypi.org/project/moto"
+
+zsh-guide:
+  type: Web
+  title: "Zsh Guide"
+  url: "https://zsh.sourceforge.io/Guide/zshguide05.html#l135"
+
+ruff-formatter:
+  type: Web
+  title: "The Ruff Formatter"
+  url: "https://astral.sh/blog/the-ruff-formatter"
+
+ruff-testimonials:
+  type: Web
+  title: "Ruff Testimonials"
+  url: "https://docs.astral.sh/ruff/#testimonials"
+
+ruff-pace:
+  type: Web
+  title: "Ruff Pace"
+  url: "https://www.youtube.com/watch?v=AfQarImZ97Y&t=228s"
+
+ruff-config:
+  type: Web
+  title: "Ruff Configuration"
+  url: "https://docs.astral.sh/ruff/configuration/"
+
+linus-line-length:
+  type: Web
+  title: "Linus Torvalds argues against 80-column line length"
+  url: "https://linux.slashdot.org/story/20/05/31/211211/linus-torvalds-argues-against-80-column-line-length-coding-style-as-linux-kernel-deprecates-it"
+
+ruff-vscode:
+  type: Web
+  title: "Ruff VSCode Extension"
+  url: "https://marketplace.visualstudio.com/items?itemName=charliermarsh.ruff"
+
+ruff-jetbrains:
+  type: Web
+  title: "Ruff JetBrains Plugin"
+  url: "https://plugins.jetbrains.com/plugin/20574-ruff"
+
+mypy-existing:
+  type: Web
+  title: "Using mypy with an existing codebase"
+  url: "https://mypy.readthedocs.io/en/stable/existing_code.html"
+
+mypy-docs:
+  type: Web
+  title: "Mypy documentation"
+  url: "https://mypy.readthedocs.io/en/stable/index.html"
+
+mypy-vscode:
+  type: Web
+  title: "Mypy VSCode Extension"
+  url: "https://github.com/microsoft/vscode-mypy"
+
+mypy-jetbrains:
+  type: Web
+  title: "Mypy JetBrains Plugin"
+  url: "https://github.com/leinardi/mypy-pycharm"
+
+setuptools-entrypoints:
+  type: Web
+  title: "Entry Points and Automatic Script Creation"
+  url: "https://setuptools.pypa.io/en/latest/userguide/quickstart.html#entry-points-and-automatic-script-creation"
+
+writing-pyproject:
+  type: Web
+  title: "Writing your pyproject.toml"
+  url: "https://packaging.python.org/en/latest/guides/writing-pyproject-toml/"
+
+pyproject-authors:
+  type: Web
+  title: "Authors/Maintainers"
+  url: "https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#authors-maintainers"
+
+setuptools-pyproject:
+  type: Web
+  title: "Configuring setuptools using pyproject.toml"
+  url: "https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html"
+
+distroless:
+  type: Web
+  title: "Distroless Container Images"
+  url: "https://github.com/GoogleContainerTools/distroless"
+
+jb-devecosystem-ci:
+  type: Web
+  title: "JetBrains DevEcosystem 2023 - CI Tools"
+  url: "https://www.jetbrains.com/lp/devecosystem-2023/team-tools/#ci_tools"
+
+setuptools-git-versioning:
+  type: Web
+  title: "setuptools-git-versioning"
+  url: "https://setuptools-git-versioning.readthedocs.io/en/v2.1.0/"
+
+ale:
+  type: Web
+  title: "ALE - Asynchronous Lint Engine"
+  url: "https://github.com/dense-analysis/ale"

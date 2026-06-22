@@ -1,36 +1,38 @@
----
-title: "Creating local-first, platform agnostic CI pipelines with Make"
-subtitle: "no school like the old school"
-description: "A guide to using Makefiles for CI pipelines."
-author: devsjc
-date: "2026-03-11"
-tags: [ci, make, infrastructure]
----
+#import "../template.typ": article
+
+#show: article.with(
+  head: "Creating local-first, platform agnostic CI pipelines with Make",
+  sub: "no school like the old school",
+  description: "A guide to using Makefiles for CI pipelines.",
+  author: "devsjc",
+  date: "2026-03-11",
+  keywords: ("ci", "make", "infrastructure")
+)
 
 In this blog I will be sharing a pattern I have found very helpful for handling CI pipelines. It avoids situations whereby locally, developers are told to run a certain command to run tests, but the CI runs something completely different in order to perform coverage or output test reports - leading to the classic "it works on my machine" scenario. Simultaneously, it helps prevent the pipeline from becoming the only arbiter of code quality, and from being stuck on a particular platform.
 
 (Now, this is not at all a new idea - so I'm running the risk of preaching something that everyone already knows. Of course people have been building pipelines, or at least developer tooling, in this manner for as long as Make has existed! However, having had experience working in places where there hasn't been much of a focus on local development - and there has been no good reason for there _not_ to have been - I do think it's worth me adding to the people talking about it).
 
 
-## Why Agnostic?
+== Why Agnostic?
 
 Remaining agnostic to platforms or vendors is a common pattern that can be seen everywhere. It plays a role in driving the usage of containerisation tools; in custom domains for email; in the layering pattern of hexagonal architecture; in cloud-init and Kubernetes. It's ubiquitous for good reason: by avoiding lock-in, there follows flexibility when choosing tools, allowing the choice to be made purely objectively - usually, based on cost savings or reliability.
 
-Incidentally, _cost_ and _reliability_ are two metrics that have recently made headlines in the CI space: this year, the GitHub platform has had a number of [outages](https://www.githubstatus.com/incidents/g5gnt5l5hf56), reducing their uptime to [under 90% in February](https://mrshu.github.io/github-statuses/). On top of this, controversy around a (since postponed) decision to [charge for self-hosted runners](https://github.com/resources/insights/2026-pricing-changes-for-github-actions) has further burned bridges with many users, leaving them looking to move their CI runners elsewhere. However, GitHub Actions is a CI platform whose lowest-friction usage pattern introduces a high level of lock-in. Actions from the Actions Marketplace are the recommended way to perform most tasks - but many of these actions will not be portable to other providers. As such, it can be time-consuming, and thus costly, to migrate - potentially more costly (in terms of developer time) than just paying any increased platform prices.
+Incidentally, _cost_ and _reliability_ are two metrics that have recently made headlines in the CI space: this year, the GitHub platform has had a number of outages @github-outages, reducing their uptime to under 90% in February @github-statuses. On top of this, controversy around a (since postponed) decision to charge for self-hosted runners @github-runner-pricing has further burned bridges with many users, leaving them looking to move their CI runners elsewhere. However, GitHub Actions is a CI platform whose lowest-friction usage pattern introduces a high level of lock-in. Actions from the Actions Marketplace are the recommended way to perform most tasks - but many of these actions will not be portable to other providers. As such, it can be time-consuming, and thus costly, to migrate - potentially more costly (in terms of developer time) than just paying any increased platform prices.
 
 Beginning with as agnostic a pipeline as is reasonable reduces the danger of being caught in such a situation, as you can more easily port your actions to another runner. Another runner, such as a local machine...
 
 
-## Local-First CI
+== Local-First CI
 
 What is a CI pipeline for? Well, it's for running tests and checks on the codebase to ensure nothing broken gets merged. But, and in fear of stating the obvious - it absolutely _shouldn't_ be the only place tests are run.
 
 It's a classic tale: trying to quickly patch some code, but can't run the tests locally; so the changes are pushed to a remote branch, and the CI pipeline monitored. Like a watched pot, it takes longer than it feels it ought to - before failing anyway because of a simple missing brace or semicolon, which again is hastily added and pushed, and the CI eyed once more. Another failure, this time a test failure, an obvious one. The cycle repeats, every second spent waiting on the CI pipeline eating away at resolve and drive. This practice of "pipeline development" for me should be avoided wherever possible.
 
-Far more preferable is to have a "local-first" CI pipeline, where most every step that is performed by the runner can also be performed identically and easily on a local machine. Running the checks locally prevents unnecessary context switching, which [reduces stress](https://ics.uci.edu/~gmark/chi08-mark.pdf) and cognitive load. By using the same commands on the local machine and the CI pipeline, the pipeline can be considered "dumb" - effectively, it is simply a transparent wrapper to launch the commands in the CI environment. All that is required is some entrypoint handler in which to define the logic for each step. This could be as targets in a `package.json` for a JavaScript project, or entrypoints in a `pyproject.toml` for Python - but I have found that a `Makefile` works wonderfully for this purpose.
+Far more preferable is to have a "local-first" CI pipeline, where most every step that is performed by the runner can also be performed identically and easily on a local machine. Running the checks locally prevents unnecessary context switching, which reduces stress @reduce-stress-context and cognitive load. By using the same commands on the local machine and the CI pipeline, the pipeline can be considered "dumb" - effectively, it is simply a transparent wrapper to launch the commands in the CI environment. All that is required is some entrypoint handler in which to define the logic for each step. This could be as targets in a `package.json` for a JavaScript project, or entrypoints in a `pyproject.toml` for Python - but I have found that a `Makefile` works wonderfully for this purpose.
 
 
-## Makefile as an Entrypoint Handler
+== Makefile as an Entrypoint Handler
 
 Makefiles work excellently here again because of the agnostic argument above: the Make tool is available and pre-installed on most platforms, reducing setup of dependencies (also, its integration in Vim is of particular benefit to me specifically!). 
 
@@ -53,7 +55,7 @@ It's straightforward to define the same targets for a Go project:
 ```makefile
 .PHONY: lint
 lint:
-    go run github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest run ./...
+    go run [github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest](https://github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest) run ./...
 
 .PHONY: test
 test:
@@ -63,7 +65,7 @@ test:
 Since the names have been matched, both codebases can now be handled by the same CI pipeline. This is useful as it enables organisations to have template CI pipelines that are used across multiple projects. The only gotchas in these cases is to make sure the linters output the same exit codes under the same scenarios - but this can easily be specified in the template, and the make targets modified accordingly.
 
 
-## A Dumb CI pipeline
+== A Dumb CI pipeline
 
 Lets take a look at the resultant pipeline. In GitHub actions, it would be something like:
 
@@ -137,9 +139,9 @@ unit-test:
 This could be extended with targets like `make build` and `make docker` and so on, to cover all the usual CI pipeline bases. If they need input, such as to specify the container registry, this can be easily handled with environment variables.
 
 
-## Bonus: Pre-commit / Pre-push
+== Bonus: Pre-commit / Pre-push
 
-Some readers are probably thinking: this hasn't necessarily solved the problem! Developers can still just forget to, or elect not to, run the tests themselves - and develop against the pipeline runner anyway. It's easier to prevent this by simply using [pre-commit](https://pre-commit.com/), (or even better, [prek](https://prek.j178.dev/)) - that way, linting errors and so on are automatically checked for and fixed on every commit.
+Some readers are probably thinking: this hasn't necessarily solved the problem! Developers can still just forget to, or elect not to, run the tests themselves - and develop against the pipeline runner anyway. It's easier to prevent this by simply using pre-commit @pre-commit, (or even better, prek @prek) - that way, linting errors and so on are automatically checked for and fixed on every commit.
 
 And I agree, mostly! In fact, this pattern works very well for pre-commit, as the targets can be re-used there in a similar manner. Though recently, I have found that I actually prefer a _pre-push hook_. The reasoning being, as usual, it is friendlier towards a frictionless local development experience. Commits are changes that local in nature: produced during the iterations of working on a bug or feature. A developer may want to commit work in progress code as a checkpoint of sorts for their own ease of navigation - but the code at this point may not be in a state where it passes linting. Pre-commit hooks could get in the way here, adding some extra cognative load if changes were required. Pre-_push_, however, sends a better message: "do what you want locally, but if you want to contribute to the shared origin, you have to meet the requisite standards". It's only on these attempts to _contribute_ that any requirements are enforced.
 
@@ -176,7 +178,7 @@ fi
 ```makefile
 .PHONY: init
 init:
-	@git config --local core.hooksPath path/to/hooks/scripts/dir
+    @git config --local core.hooksPath path/to/hooks/scripts/dir
 ```
 
 And the development documentation is as simple as you like: "Check out the repository, run `make init`, and when required, lint and test via `make lint` and `make test` respectively."
@@ -185,4 +187,4 @@ And the development documentation is as simple as you like: "Check out the repos
 
 There you have it! Another addition to my collection of posts harping on about local development. Hopefully it was at all useful!
 
-
+#bibliography("_refs.yaml", style: "ieee")

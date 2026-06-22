@@ -1,745 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  
-  <title>solc.uk</title>
-  <meta name="description" content="Personal website of devsjc, a data engineer based in the UK.">
-  
-  <meta property="og:title" content="solc.uk">
-  <meta property="og:description" content="Personal website of devsjc, a data engineer based in the UK.">
-  <meta property="og:image" content="static/assets/favicon.svg" type="image/svg+xml">
-
-  <link rel="icon" href="static/assets/favicon.ico" sizes="any" type="image/x-icon">
-  <link rel="preload" href="static/fonts/archivo-black-v23-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
-  <script defer src="https://solc.uk/stats/getinfo" data-website-id="5ff4acae-feeb-4127-be89-a7fc2ee0079c"></script>
-
-	<script>
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    }
-  </script>
-
-  <style>
-		@font-face {
-			font-display: swap;
-			font-family: 'Petrona';
-			font-style: normal;
-			font-weight: 100 900;
-			src: url('static/fonts/petrona-latin.woff2') format('woff2'); 
-			unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-		}
-		@font-face {
-			font-display: swap;
-			font-family: 'Archivo Black';
-			font-style: normal;
-			font-weight: 400;
-			src: url('static/fonts/archivo-black-v23-latin-regular.woff2') format('woff2'); 
-		}
-		@font-face {
-			font-display: swap; 
-			font-family: 'Google Sans Code';
-			font-style: normal;
-			font-weight: 300;
-			src: url('static/fonts/google-sans-code-v14-latin-300.woff2') format('woff2');
-		}
-		:root {
-			--light-text: rgb(23, 43, 58);
-			--light-bg:   rgb(247, 246, 242);
-			--light-hl:   rgb(184, 77, 52);
-
-			--dark-text:  rgb(241, 245, 248);
-			--dark-bg:    rgb(53, 76, 85);
-			--dark-hl:    rgb(207, 194, 144);
-
-			--textcolor: var(--light-text);
-			--bgcolor: var(--light-bg);
-			--highlight: var(--light-hl);
-
-			--animation-duration: 200ms;
-    }
-		@media (prefers-color-scheme: dark) {
-			:root:not([data-theme="light"]) {
-				--textcolor: var(--dark-text);
-				--bgcolor: var(--dark-bg);
-				--highlight: var(--dark-hl);
-      }
-    }
-		:root[data-theme="dark"] {
-			--textcolor: var(--dark-text);
-			--bgcolor: var(--dark-bg);
-			--highlight: var(--dark-hl);
-    }
-
-		* {
-			margin: 0; padding: 0; box-sizing: border-box;
-		}
-		
-		body {
-			font-size: clamp(1rem,4vw,1.25rem);
-			line-height: 1.75;
-			text-wrap: pretty;
-			font-family: Petrona;
-			font-weight: 400;
-			color: var(--textcolor);
-			background: var(--bgcolor);
-			transition: background var(--animation-duration) ease-in;
-			scrollbar-gutter: stable;
-    }
-
-		header {
-			padding: 8px 8px;
-			display: flex;
-			flex-wrap: wrap;
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			pointer-events: none; /* so it doesn't block section links */
-			z-index: 2;
-		}
-		header > * {
-      pointer-events: auto; /* Re-enables clicking on the actual logo and nav links */
-    }
-		header h1 {
-			font-size: clamp(2rem, 8vw, 4rem);
-			line-height: 1.25;
-			flex: 1; /* pushes nav to the right */
-			white-space: nowrap;
-			padding: 0 5vw .5em 0;
-			margin: 0; /* Overrides the global h1 margin to pull it flush to the top */
-			border-radius: .5rem;
-		}
-		header nav {
-			display: none;
-			align-items: center;
-			gap: 1rem;
-			padding: 1rem 5vw;
-		}
-
-		body:has(section:not(#home):target) header nav {
-			display: flex;
-		}
-
-		nav a:not(.social):last-of-type::after {
-			content: "//";
-			margin-left: 2vw;
-			margin-right: 2vw;
-			opacity: 0.9;
-			color: var(--textcolor);
-			pointer-events: none;
-		}
-
-		.social, .social ~ a {
-			font-size: 0.85em;
-			opacity: 0.7;
-		}
-
-		main {
-			position: relative;
-			max-width: 56em;
-			min-height: 95vh;
-			margin: 0 auto;  /* centers the layout */
-			flex: 1 0 auto;
-			width: 100%;
-    }
-
-		/* ------- Sections ------- */
-
-		section {
-			padding: calc(2em + 5vw) 5vw calc(6em + 0vw) 5vw;
-			/* ! Everything below is needed ! */
-			display: none;
-			top: 0;
-			min-height: 100vh;
-			width: 100%;
-		}
-		section:target { /* Show section */
-			display: block;
-		}
-		section#home { /* Show #home by default */
-			display: block;
-		}
-		/* Hide #home when any OTHER section is active */
-    body:has(section:not(#home):target) section#home {
-      display: none;
-    }
-
-		/* ------- General ------- */
-
-		a {
-			text-decoration: none;
-			color: var(--highlight);
-		}
-
-		a:hover {
-			border-bottom: 1px solid;
-		}
-
-		h2,h3,h4,h5,h6 {
-			font-weight: 500;
-			line-height: 1;
-			margin: 1.8em 0 1em 0;
-			scroll-margin-top: 2em;
-		}
-
-		h1 {
-			font-family: Archivo Black, system-ui, sans-serif;
-			font-size: clamp(2rem, 8vw, 4rem);
-			line-height: 1;
-			margin: .6em 0 1em 0;
-		}
-
-		h2 { font-size: 1.65rem; }
-		h3 { font-size: 1.25rem;}
-
-		p, ul, ol, article {
-			max-width: 60ch; /* Limit line-length to 60 characters */
-			margin-bottom: 1em;
-			line-height: 1.75;
-			letter-spacing: .011em;
-		}
-
-		ul {
-			list-style-type: none;
-		}
-
-		ul li::marker {
-			content: "\2022   ";
-		}
-
-		li {
-			margin-bottom: .2em;
-		}
-
-		ul, ol {
-			padding-left: 2ch;
-		}
-
-		#blog ul li {
-			display: flex;
-			align-items: center;
-			gap: 1.5rem;
-			margin-bottom: 0.5em;
-		}
-
-		#blog ul li time {
-			flex-shrink: 0;
-			width: 7rem;
-			font-family: Google Sans Code, ui-monospace, monospace;
-			font-size: .8em;
-			opacity: 0.6;
-		}
-
-		small {
-			font-size: .85em;
-		}
-
-		hr {
-			height: 1px;
-			border: 0;
-			background: currentColor;
-			opacity: .1;
-			margin: 1.2em 0;
-		}
-
-		abbr[title]:hover {
-			opacity: .7;
-			cursor: help;
-		}
-
-		blockquote {
-			padding-left: 2ch;
-			opacity: .7;
-			margin-bottom: .6em;
-			position: relative;
-		}
-
-		blockquote:before {
-			content: "";
-			position:absolute;
-			left: 0;
-			top: .3em;
-			bottom: .3em;
-			background: currentColor;
-			width: 1px;
-			opacity: .2;
-		}
-
-		img, svg, video, audio {
-			display: block;
-			max-width: 100%;
-			height: auto;
-			fill: currentColor;
-		}
-
-		code, textarea {
-			font-family: Google Sans Code, ui-monospace, monospace;
-			font-size: 0.9em;
-			opacity: .7;
-		}
-
-		pre, textarea {
-			font-size: .9em;
-			color: inherit;
-			line-height:inherit;
-			padding:.6em .9em;
-			margin: 1.8em 0 1.8em 0;
-			position: relative;
-			display: block;
-			width: 100%;
-			white-space: pre;
-			border:0;
-			border-radius: .5rem;
-			background: oklch(from var(--bgcolor) calc(l + 0.1) c h);
-			box-decoration-break: slice
-			max-width: 100%;
-			overflow-x: auto;
-			white-space: pre;
-			word-wrap: normal;
-		}
-
-		/* Inline footnotes */
-
-		label {
-			cursor: pointer;
-			vertical-align: super;
-			line-height: 1;
-			font-size: .75em;
-			padding-left: .1em;
-		}
-
-		label:hover {
-			color: var(--highlight);
-		}
-
-		label:before {content:"[";}
-		label:after {content:"]";}
-
-		label + input,
-		label + input + small {
-			display: none;
-		}
-
-		input:checked + small {
-			display: block;
-			padding: .8em 0 1em 2.5vw;;
-		}
-
-		/* Figures */
-
-		figure {
-			margin: 2em 0 1.5em 0;
-		}
-
-		figure figcaption {
-			margin: 0.8em 0 0 0;
-			font-size: .85em;
-			opacity: .7;
-		}
-
-		/* Responsive video embeds */
-
-		figure.video {
-			position: relative;
-			padding-bottom: 56.25%; /* 16:9 */
-			height: 0;
-			overflow: hidden;
-		}
-
-		figure.video iframe, figure.video object, figure.video embed {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			border: 0;
-			visibility: hidden; /* so loading="lazy" should work */
-		}
-
-		section:target iframe {
-			visibility: visible;
-		}
-
-		/* External links */
-
-		a[href*="//"]:after {
-			font-weight: 300;
-			font-size: .85em;
-			content: "\2197"; /* top right arrow: â†— */
-			color: var(--textcolor);
-			opacity: .25;
-		}
-
-		a[href*="//"]:hover:after {
-			color: var(--highlight);
-			opacity: 1;
-		}
-
-		/* File links */
-
-		a:before {
-			font-size: .7em;
-			margin-right: .4em;
-		}
-
-		/* ------- Footer ------- */
-
-		.site-footer {
-				width: 100%;
-				display: flex;
-				flex-direction: column;
-				margin-top: 4rem;
-		}
-
-		.footer-landscape {
-				width: 100%;
-				height: 25vw; /* Scales height dynamically with window width */
-				max-height: 350px;
-				min-height: 150px;
-				position: relative;
-				overflow: hidden;
-				pointer-events: none; /* Decorative */
-		}
-
-		.footer-landscape svg {
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-		}
-
-		.footer-content {
-				background-color: var(--highlight); 
-				color: var(--bgcolor);
-				padding: 1rem 5vw 1rem 5vw;
-		}
-
-		footer nav {
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: center;
-				gap: 1.5rem;
-				align-items: center;
-		}
-
-		footer nav a,
-		footer nav button {
-				color: var(--bgcolor); 
-				text-decoration: none;
-				background: none;
-				border: none;
-				font-family: inherit;
-				font-size: 1em;
-				cursor: pointer;
-				padding: 0;
-				border-bottom: 1px solid transparent;
-		}
-
-		footer nav a:hover,
-		footer nav button:hover {
-				border-bottom: 1px solid currentColor;
-		}
-
-		/* ------- Smaller screens ------- */
-
-		@media only screen and (max-width: 680px) {
-			body { font-size: 16px; }
-
-			#blog ul li {
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				gap: 0.2rem;
-				margin-bottom: 1.2em;
-				text-align: left;
-			}
-
-			#blog ul li time {
-				width: auto; /* Let it sit naturally on top */
-			}
-		}
-  </style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>sol cotton</title>
+<style>
+@font-face {
+  font-family: 'Select Mono';
+  src: url('SelectMonoItalic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Commit Mono';
+  src: url('CommitMonoRegular.woff2') format('woff2');
+  font-weight: normal;
+}
+
+* {
+  margin: 0 auto 0 auto;
+  font-size: 13px;
+
+  --text-color: #333;
+  --accent-color: #007acc;
+  --background-color: rgb(255, 255, 255);
+}
+
+body, body.post {
+  align-items: center;
+  font-family: 'Select Mono', monospace, monospace;
+  font-style: italic;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+}
+body.post > main {
+  max-width: 62ch;
+}
+body.post section p {
+  text-align: justify;
+}
+
+h1, h2, h3, h4 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  text-transform: uppercase;
+  font-size: inherit;
+  font-weight: normal;
+}
+h5 {
+  font-weight: normal;
+}
+h1::after {
+  content: "* * *";
+  display: block;
+  margin-top: 1em;
+}
+
+time::after {
+  content: " > ";
+}
+section[id], header {
+  margin-bottom: 1em;
+}
+
+pre {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 1em;
+  margin: 1em 0 1em 0;
+  overflow-x: auto;
+  text-align: left;
+  border-top: dashed 0.5px;
+  border-bottom: dashed 0.5px;
+}
+code {
+  font-family: 'Select Mono', monospace, monospace;
+}
+
+section#blog > ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+  padding-left: 9ch;
+  text-indent: -9ch;
+}
+section#blog  a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+section#blog a:hover {
+  color: var(--background-color);
+  background-color: var(--text-color);
+}
+
+main {
+  flex-direction: column;
+  text-align: center;
+  align-self: center;
+  padding: 20px;
+  max-width: 42ch;
+  margin: auto;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--background-color);
+  background-color: var(--accent-color);
+}
+
+@media only screen and (max-width: 390px) {
+  main { 
+    padding: 5px;
+    --scale-ratio: calc(100vw / 1px / 390);
+    transform: scale(var(--scale-ratio));
+    transform-origin: top center;
+    width: calc(390px / var(--scale-ratio));
+  }
+  body.post > main { 
+    max-width: 42ch;
+    text-align: justify;
+  }
+}
+
+</style>
 </head>
-    
 <body>
-  
-  <header>
-			<h1>
-				<a href="#home">
-					<img loading="lazy" alt="Logo" src="static/assets/favicon.svg" width="56" height="56">
-				</a>
-			</h1>
-		</div>
-    <nav>
-      <a href="#experience">Experience</a>
-      <a href="#blog">Blog</a>
-      <a href="#music">Music</a>
-
-      <a href="https://github.com/devsjc" class="social">GitHub</a>
-      <a href="https://linkedin.com/in/solcotton/" class="social">LinkedIn</a>
-    </nav>
-  </header>
 
   <main>
+     <header>
+       <p>-----------------------------------------</p>
+       <p>--- sol cotton --------------------------</p>
+       <p>-----------------------------------------</p>
+       <p>-----------------------------------------</p>
+       <p>-------------------------<a href="https://solc.uk">solc.uk</a>---------</p>
+       <p>-----------------------------------------</p>
+       <br>
+     </header>
 
-    <section id="home">
+       <section id="blog">
+	 <p>london, uk</p>
+	 <br>
+	 <p>BLOGS</p>
+	 <br>
+	 <ul>
+         <!-- BLOG_LIST_PLACEHOLDER -->
+	 </ul>
+       </section>
 
-      <h1>Sol Cotton // <a href="#experience"> data engineer</a>; <a href="#music">maker of noise</a></h1>
+       <section id="experience">
+	 <p>WORK EXPERIENCE</p>
+	 <br>
+	 <p>
+	    Many years of: Data Engineering Backend Engineering Cloud Engineering
+	    DevOps Systems Architecture CI/CD Pipelines Server Management
+	    (Inc. Home Kubernetes Cluster) Golang Python (Postgre)SQL GCP AWS Terraform Docker
+	 </p>
+	 <br>
+	 <p>2022 &gt; openclimatefix &gt;&gt;&gt; DATA ENGINEER</p>
+	 <p>2020 &gt; auden &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; DATA ENGINEER</p>
+	 <p>2019 &gt; dunnhumby &gt;&gt;&gt;&gt;&gt; JUNIOR ENGINEER</p>
+       </section>
 
-      <p>Hello! This is the website of me, Sol.</p> 
 
-      <p>I'm a software engineer based in the UK, primarily working as a Data Engineer but -
-      as is usually the case with DEng - with that comes a lot of experience architecting and
-      building entire backend systems, deployment infrastructure, developer tooling, CI/CD
-      pipelines, and so on. Take a look at
-      <a href="#experience">experience</a> for a more complete overview.</p>
+       <section id="music">
+	 <p>MUSIC</p>
+	 <br>
+	 <p>the state pension</p>
+	 <p><a href="https://soundcloud.com/thestatepension">soundcloud.com/thestatepension</a></p>
+	 <br>
+	 <p>sbebs</p>
+	 <p><a href="https://youtube.com/@sbebs">youtube.com/@sbebs</a></p>
+       </section>
 
-      <p>I am a big advocate for not screwing up the planet on which we live, hence my current
-      position in the renewable energy sector (and hence my exremely minimalist website!).
-      I'm fascinated by physics; the very large, and the very small.</p>
+       <section id="contact">
+	       <p>* * *</p>
+	       <br>
+	       <p>GITHUB</p>
+	       <p><a href="https://github.com/devsjc">github.com/devsjc</a></p>
+	       <br>
+	       <p>LINKEDIN</p>
+	       <p><a href="https://https://linkedin.com/in/solcotton/">linkedin.com/in/solcotton</a></p>
+	       <br>
+	       <p>EMAIL</p>
+	       <p><a href="mailto:hi.site@solc.uk">hi.site@solc.uk</a></p>
+	       <br>
+	       <p>* * *</p>
+	       <br>
+	       <p>(c) Sol Cotton</p>
+       </section>
 
-      <p>I also enjoy coding in my spare time (imagine!) - I maintain a personal kubernetes server
-      at home, on which I run a suite of open source services. I also write occasional blog posts about
-      programming, which you can find in the <a href="#blog">blog</a> section of this site.
-      (During lockdown I even wrote an android app so that my friends and I could play games
-      remotely!)</p>
-
-    </section>
-
-    <section id="experience">
-
-      <h1>work experience //</h1>
-
-      <p>I'm going to put this section together soon, but for now, see my linkedin for my CV.</p>
-
-    </section>
-
-    <section id="blog">
-
-      <h1>devsjc blogs //</h1>
-
-      <p>I occasionally write about thoughts or experiences with programming. Below is a list of
-      these posts. They come in two flavours, those being regular posts, and <em>chasers</em>, which are
-      shorter posts primarily used as a reminder to myself about something I want to remember.</p>
-
-      <p>Also, what with it being <em>current year</em>, I feel compelled to state that these posts
-      are all written soley by <em>me</em>, and not some jumped up predictive text generator -
-      otherwise really, what is the point in any of it?</p>
-
-      <p><em><small>Posts are markdown docs, converted to html via marked.js; as such, I'm afraid
-      you'll need javascript enabled to read them.</small></em></p>
-
-      </br>
-
-      <ul>
-	<li>
-	  <time>2026-03-11</time>
-	  <a href="#p20260311" data-src="static/blogs/20260311-make-ci.md">
-            Creating local-first, platform agnostic CI pipelines with Make
-	  </a>
-	</li>
-	<li>
-          <time>2026-03-02</time>
-	  <a href="#p20260302" data-src="static/blogs/20260302-rewrote-core.md">
-	    Why I secretly rewrote my company's core infrastructure in my spare time
-	  </a>
-        <li>
-          <time>2025-04-11</time>
-          <a href="#p20250411" data-src="static/blogs/20250411-praising-uv.md">
-            How uv helps me not hate Python
-          </a>
-        </li>
-        <li>
-          <time>2024-11-29</time>
-          <a href="#p20241129" data-src="static/blogs/20241129-chaser-bootable-win-usb.md">
-            [chaser] How to create a bootable Windows USB from a Mac
-          </a>
-        </li>
-        <li>
-          <time>2024-06-27</time>
-          <a href="#p20240627" data-src="static/blogs/20240627-pyproject-guide.md">
-            The complete guide to pyproject.toml
-          </a>
-        </li>
-        <li>
-          <time>2024-04-06</time>
-          <a href="#p20240406" data-src="static/blogs/20240406-chaser-vim-91-debian.md">
-            [chaser] How to install Vim 9.1 on Debian
-          </a>
-        </li>
-        <li>
-          <time>2024-04-05</time>
-          <a href="#p20240405" data-src="static/blogs/20240405-vim-as-data-ide.md">
-            Database connections in the terminal: using Vim as a data IDE
-          </a>
-        </li>
-        <li>
-          <time>2023-09-15</time>
-          <a href="#p20230915" data-src="static/blogs/20230915-jb-to-vim.md">
-            From JetBrains to Vim
-          </a>
-        </li>
-      </ul>
-
-    </section>
-
-    <!-- Blog sections populated on demand -->
-    <section id="p20260311" class="blog-content"></section>
-    <section id="p20260302" class="blog-content"></section>
-    <section id="p20250411" class="blog-content"></section>
-    <section id="p20241129" class="blog-content"></section>
-    <section id="p20240627" class="blog-content"></section>
-    <section id="p20240406" class="blog-content"></section>
-    <section id="p20240405" class="blog-content"></section>
-    <section id="p20230915" class="blog-content"></section>
-    
-    <section id="music">
-
-      <h1>face the music //</h1>
-
-      <p>At some point I'll put some links to my musical endeavours here! (Or maybe I'll chicken out
-      of it!)</p>
-
-    </section>
-      
   </main>
 
-	<footer class="site-footer">
-    <div class="footer-landscape">
-      <svg version="2.0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax slice">
-        <circle r="900" fill="#98443c" cy="1020" cx="350"></circle>
-  			<circle cy="1120" r="970" fill="#b66e51" cx="380"></circle>
-      </svg>
-    </div>
-    <div class="footer-content">
-      <nav class="footer-nav">
-        <a href="#home">Home</a>
-        <a href="#experience">Experience</a>
-        <a href="#blog">Blog</a>
-        <a href="#music">Music</a>
-
-        <button id="theme-toggle" aria-label="Toggle theme">Toggle Theme</button>
-      </nav>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script>
-    const loadMarkdown = async () => {
-      const hash = window.location.hash;
-      if (!hash) return;
-
-      const targetId = hash.substring(1);
-      const targetSection = document.querySelector(`[id="${targetId}"]`);
-
-      if (targetSection && targetSection.classList.contains('blog-content') && !targetSection.dataset.loaded) {
-        const triggerLink = document.querySelector(`a[href="${hash}"]`);
-        const source = triggerLink?.getAttribute('data-src');
-
-        if (source) {
-          try {
-            const response = await fetch(source);
-            if (!response.ok) throw new Error('File not found');
-
-            let rawText = await response.text();
-            let frontmatter = {};
-            let markdownContent = rawText;
-
-            const fmMatch = rawText.match(/^---\s*([\s\S]*?)\s*---/);
-
-            if (fmMatch) {
-              const yamlBlock = fmMatch[1];
-              markdownContent = rawText.replace(fmMatch[0], '').trim();
-
-              yamlBlock.split('\n').forEach(line => {
-                const [key, ...val] = line.split(':');
-                if (key && val) {
-                  frontmatter[key.trim()] = val.join(':').trim().replace(/^["']|["']$/g, '');
-                }
-              });
-            }
-
-           const renderer = new marked.Renderer();
-
-           renderer.heading = ({ text, depth }) => {
-             const escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
-             return `<h${depth} id="${escapedText}">${text}</h${depth}>`;
-           };
-            // Intercept Markdown Links
-           renderer.link = ({ href, text }) => {
-             if (href.startsWith('#')) {
-               return `<a href="${href}" class="internal-link">${text}</a>`;
-             }
-             return `<a href="${href}">${text}</a>`;
-           };
-           marked.setOptions({ renderer });
-
-           targetSection.innerHTML = `
-            <article>
-              <p><a href="#blog">← Back</a></p>
-              </br>
-              <h1>
-                ${frontmatter.title || 'Untitled'}
-	      </h1>
-              ${frontmatter.subtitle ? ` <span><em><small>${frontmatter.subtitle} //</small></em></span>` : ''}
-              <p><small>${frontmatter.date || ''} • By ${frontmatter.author || 'Anonymous'}</small></p>
-              <hr>
-
-              ${marked.parse(markdownContent)}
-
-              <hr>
-            </article>
-            `;
-
-            targetSection.dataset.loaded = "true";
-          } catch (err) {
-            targetSection.innerHTML = `<article><p>Post content could not be loaded.</p></article>`;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('hashchange', loadMarkdown);
-    window.addEventListener('DOMContentLoaded', loadMarkdown);
-    document.addEventListener('click', (e) => {
-      const link = e.target.closest('.internal-link');
-      if (link) {
-        e.preventDefault(); // Stop the URL from changing
-        const targetId = link.getAttribute('href').substring(1);
-        const hash = window.location.hash;
-        const currentSection = document.querySelector(hash);
-        if (currentSection) {
-          const targetEl = currentSection.querySelector(`#${targetId}`);
-          if (targetEl) {
-            targetEl.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      }
-    });
-
-    const themeToggle = document.getElementById('theme-toggle');
-    themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme');
-      let targetTheme = 'light';
-
-      if (currentTheme === 'light') {
-        targetTheme = 'dark';
-      } else if (currentTheme === 'dark') {
-        targetTheme = 'light';
-      } else {
-        targetTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'light' : 'dark';
-      }
-
-      document.documentElement.setAttribute('data-theme', targetTheme);
-      localStorage.setItem('theme', targetTheme);
-    });
-  </script>
-
 </body>
-
 </html>

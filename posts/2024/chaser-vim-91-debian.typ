@@ -1,28 +1,30 @@
----
-title: "[chaser] how to install Vim 9.1 on Debian Bookworm"
-subtitle: "or any package from debian testing"
-author: "devsjc"
-date: "2024-04-06"
-tags: [vim, debian]
----
+#import "../template.typ": article
+
+#show: article.with(
+  head: "[chaser] how to install Vim 9.1 on Debian Bookworm",
+  sub: "or any package from debian testing",
+  author: "devsjc",
+  date: "2024-04-06",
+  keywords: ("vim", "debian")
+)
 
 Want to use your favourite language server protocols with proper virtualtext support in Vim's latest release, 9.1 - but unable to do so from your favourite linux distro, Debian 12 Bookworm? Me too! Luckily, you can fix it - without breaking Debian!
 
-Vim 9.1 is [available in Debian testing](https://packages.debian.org/trixie/vim). To install it, firstly create a new file in `/etc/apt/sources.list.d/` called `testing.list` with the following contents:
+Vim 9.1 is available in Debian testing @debian-vim-testing. To install it, firstly create a new file in `/etc/apt/sources.list.d/` called `testing.list` with the following contents:
 
 ```txt
-deb http://deb.debian.org/debian/ testing main
-deb-src http://deb.debian.org/debian/ testing main
- ```
+deb [http://deb.debian.org/debian/](http://deb.debian.org/debian/) testing main
+deb-src [http://deb.debian.org/debian/](http://deb.debian.org/debian/) testing main
+```
 
 Now, running `sudo apt update` will add the new list to your sources:
 
 ```bash
 $ sudo apt update
-Hit:1 http://security.debian.org/debian-security bookworm-security InRelease
-Hit:2 http://deb.debian.org/debian bookworm InRelease
-Hit:3 http://deb.debian.org/debian bookworm-updates InRelease
-Hit:4 http://deb.debian.org/debian testing InRelease
+Hit:1 [http://security.debian.org/debian-security](http://security.debian.org/debian-security) bookworm-security InRelease
+Hit:2 [http://deb.debian.org/debian](http://deb.debian.org/debian) bookworm InRelease
+Hit:3 [http://deb.debian.org/debian](http://deb.debian.org/debian) bookworm-updates InRelease
+Hit:4 [http://deb.debian.org/debian](http://deb.debian.org/debian) testing InRelease
 Fetched 6,572 B in 1s (9,838 B/s)
 Reading package lists... Done
 Building dependency tree... Done
@@ -42,10 +44,10 @@ By specifying the priority to negative, `apt` will never choose candidates from 
 
 ```bash
 $ sudo apt update
-Hit:1 http://deb.debian.org/debian bookworm InRelease
-Hit:2 http://security.debian.org/debian-security bookworm-security InRelease
-Hit:3 http://deb.debian.org/debian bookworm-updates InRelease
-Hit:4 http://deb.debian.org/debian testing InRelease
+Hit:1 [http://deb.debian.org/debian](http://deb.debian.org/debian) bookworm InRelease
+Hit:2 [http://security.debian.org/debian-security](http://security.debian.org/debian-security) bookworm-security InRelease
+Hit:3 [http://deb.debian.org/debian](http://deb.debian.org/debian) bookworm-updates InRelease
+Hit:4 [http://deb.debian.org/debian](http://deb.debian.org/debian) testing InRelease
 Fetched 6,572 B in 1s (9,547 B/s)
 Reading package lists... Done
 Building dependency tree... Done
@@ -69,3 +71,4 @@ Included patches: 1-16
 
 Enjoy Vim 9.1 on your stable machine!
 
+#bibliography("_refs.yaml", style: "ieee")

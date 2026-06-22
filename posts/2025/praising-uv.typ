@@ -1,11 +1,13 @@
----
-title: "How uv Helps Me to Not Hate Python"
-subtitle: "and how to let it help you, too"
-description: "A guide to using uv across the python development lifecycle."
-author: devsjc
-date: 2025-04-11
-tags: [uv, python, guide]
----
+#import "../template.typ": article
+
+#show: article.with(
+  head: "How uv Helps Me to Not Hate Python",
+  sub: "and how to let it help you, too",
+  description: "A guide to using uv across the python development lifecycle.",
+  author: "devsjc",
+  date: "2025-04-11",
+  keywords: ("uv", "python", "guide")
+)
 
 I'm not a huge fan of Python. Or at least, that's the shortest way to describe how, whilst it's
 undeniably extremely capable and accessible at the same time, it is also sprawling with libraries
@@ -20,15 +22,15 @@ enabled.
 But now `uv` has come along, and made a lot of my dislikes about Python redundant. Install it with
 
 ```bash
-$ curl -LsSf https://astral.sh/uv/install.sh | sh
+$ curl -LsSf [https://astral.sh/uv/install.sh](https://astral.sh/uv/install.sh) | sh
 ```
 
 and lets see how it can help you hate python a little bit less, too.
 
 
-## For local development
+== For local development
 
-I have [already written a blog post](#p20240406)
+I have already written a blog post @pyproject-guide-internal
 on using `pyproject.toml` to manage Python projects, in which the claim is made that it can be laid
 out in a tool-agnostic manner. Helpfully, `uv` isn't bucking that trend, and so, provided that I
 am cloning a repository that has a `pyproject.toml` file similar to as in that post, getting started
@@ -73,7 +75,7 @@ $ uv add --dev hypothesis ruff
 This updates the `pyproject.toml` file for me! It feels like using some language that isn't Python,
 where the package manager is sensible and dependencies are well managed. Note how `uv` enables good
 practice - source layout, separation of dependencies, dependency pinning and so on - encouraging
-better behaviour to help [even the most uncaring developer](https://josvisser.substack.com/p/you-cant-teach-caring)
+better behaviour to help even the most uncaring developer @uncaring-developer
 structure and manage their codebase in a robust way.
 
 Also note how at no point have I had to activate or even thing about a virtual environment, because
@@ -90,10 +92,10 @@ $ uv run ruff check --fix .
 $ uv run mypy .
 ```
 
-<aside>
-I haven't mentioned ruff in here, but it is definitely another key component of the tooling making
-python less painful to use - see the pyproject blog post I mentioned earlier for more on that.
-</aside> 
+#quote(block: true)[
+  I haven't mentioned ruff in here, but it is definitely another key component of the tooling making
+  python less painful to use - see the pyproject blog post I mentioned earlier for more on that.
+]
 
 `uv`'s caching will ensure you don't end up in a node-modules -esque world of sprawling
 multi-gigabyte `.venv` directories as it hardlinks from the cache directory by default. And I'm not
@@ -106,16 +108,16 @@ $ uv run vim .
 in an environment with `python-lsp-server`, for instance, as a development dependency creates a
 vim instance with LSP support - an ease of integration that impresses me every time.
 
-<aside>
-Of course, you'll need to have LSP support set up in vim, but 
-<a href="https://bsky.app/profile/crmarsh.com/post/3lgvhzdfrps26">here's a blog post</a>
-on how to do that too! I like to also have <code>python-lsp-ruff</code> and 
-<code>pylsp-mypy</code> in the dev dependency group to get linting and type checking through LSP
-too.
-</aside>
+#quote(block: true)[
+  Of course, you'll need to have LSP support set up in vim, but 
+  here's a blog post @charlie-bsky
+  on how to do that too! I like to also have `python-lsp-ruff` and 
+  `pylsp-mypy` in the dev dependency group to get linting and type checking through LSP
+  too.
+]
 
 
-## In Docker containers
+== In Docker containers
 
 Building a container is also improved using `uv`. Here is an example Dockerfile, with comments
 describing each stage, that is designed to be optimal for production use. It uses a layered
@@ -180,10 +182,10 @@ dependency install step, and enable cahce useage, as it isn't copied over into t
 anyway so won't affect image size - however `uv` is so fast I didn't really notice much difference!
 
 
-## Publishing to PyPI
+== Publishing to PyPI
 
 Publishing to PyPI is, again, dead easy and quick. Just get a PyPI token (or even better, set up
-[trusted publishing](https://docs.pypi.org/trusted-publishers/)) and then
+trusted publishing @trusted-publishing) and then
 
 ```bash
 $ uv build
@@ -192,18 +194,19 @@ $ uv publish -t <token>
 
 This is very easy to port to CI/CD pipelines.
 
-## Final thoughts
+== Final thoughts
 
-In summary then, I'm indebted to Charlie Marsh and the [astral.sh](https://docs.astral.sh/) team
+In summary then, I'm indebted to Charlie Marsh and the astral.sh @astral-docs team
 for bringing the Python ecosystem into a state in which even the most anti-python developers, 
 forced to use it for work or ML, can be productive and even find a bit of joy in it. If their
-[upcoming static type checker](https://bsky.app/profile/crmarsh.com/post/3lgvhzdfrps26) is as good
+upcoming static type checker @charlie-bsky is as good
 and as paradigm-shifting as `uv` and `ruff` were, well, I might just change my stance from thinking
 I don't like Python to realising that I just don't like bad code, which, with this improved
 tooling, doesn't have to be partly to blame on the Python ecosystem anymore.
 
-<aside>
-And if type hinting proliferates as a result, maybe I'll finally shut up about Python altogether...
-<a href="https://bsky.app/profile/jack-kelly.com/post/3ldijzckh6c2c">I agree, Jack!</a>
-</aside>
+#quote(block: true)[
+  And if type hinting proliferates as a result, maybe I'll finally shut up about Python altogether...
+  I agree, Jack! @jack-kelly-bsky
+]
 
+#bibliography("_refs.yaml", style: "ieee")

@@ -1,0 +1,44 @@
+sqlc:
+  type: Web
+  title: "sqlc: A SQL Compiler"
+  url: "https://github.com/sqlc-dev/sqlc"
+
+sqlx:
+  type: Web
+  title: "sqlx: The Rust SQL Toolkit"
+  url: "https://github.com/launchbadge/sqlx"
+
+astral-sh:
+  type: Web
+  title: "Astral: Next-generation Python tooling"
+  url: "https://astral.sh/"
+
+github-outages:
+  type: Web
+  title: "GitHub Status - Incidents"
+  url: "https://www.githubstatus.com/incidents/g5gnt5l5hf56"
+
+github-statuses:
+  type: Web
+  title: "GitHub Statuses History"
+  url: "https://mrshu.github.io/github-statuses/"
+
+github-runner-pricing:
+  type: Web
+  title: "2026 Pricing Changes for GitHub Actions"
+  url: "https://github.com/resources/insights/2026-pricing-changes-for-github-actions"
+
+reduce-stress-context:
+  type: Web
+  title: "The Cost of Interrupted Work: More Speed and Stress"
+  url: "https://ics.uci.edu/~gmark/chi08-mark.pdf"
+
+pre-commit:
+  type: Web
+  title: "pre-commit: A framework for managing and maintaining multi-language pre-commit hooks"
+  url: "https://pre-commit.com/"
+
+prek:
+  type: Web
+  title: "prek: Fast, dependency-free pre-commit hooks"
+  url: "https://prek.j178.dev/"
