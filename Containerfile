@@ -1226,7 +1226,7 @@ RUN du -h -d0 /busybox/_install/bin/busybox
 # -- Bundle the static files -- #
 FROM alpine:3.13.2 AS bundler
 
-RUN setup-apkrepos -c -1
+RUN sed -i '/community/s/^#//' /etc/apk/repositories
 RUN apk add --no-cache make uv typst
 
 
