@@ -28,7 +28,7 @@ dist/index.html: index.html $(SOURCES) | dist
 		title=$$(grep 'head:' "$$file" | head -n 1 | cut -d'"' -f2); \
 		date=$$(grep 'date:' "$$file" | head -n 1 | cut -d'"' -f2); \
 		bname=$$(basename "$$file" .typ); \
-		fmt_date=$$(python3 -c "from datetime import datetime; print(datetime.strptime('$$date', '%Y-%m-%d').strftime('%d %b'))"); \
+		fmt_date=$$(uv run python -c "from datetime import datetime; print(datetime.strptime('$$date', '%Y-%m-%d').strftime('%d %b'))"); \
 		echo "$$date|<li><time datetime='$$date'>$$fmt_date</time><a href='$$bname.html'>$$title</a></li>" >> dist/blog_list.tmp; \
 	done
 	@sort -r dist/blog_list.tmp | cut -d'|' -f2 > dist/blog_list_sorted.tmp
