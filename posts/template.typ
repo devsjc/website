@@ -13,11 +13,12 @@
     description: description,
     keywords: keywords,
   )
+  set raw(theme: none)
 
   title()
   
   if sub != none {
-    text(style: "italic")[ #sub \/\/ \ ]
+    heading(level: 4)[ #sub \/\/ \ ]
   }
   
   let author-string = if type(author) == str { 
@@ -29,7 +30,6 @@
   }
   
   heading(level: 3)[#date • By #author-string]
-  line(length: 100%, stroke: 0.5pt)
   
   body
 }

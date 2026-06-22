@@ -3,66 +3,194 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SOLC DOT UK</title>
-  <link rel="stylesheet" href="style.css">
+  <title>sol cotton</title>
+<style>
+@font-face {
+  font-family: 'Select Mono';
+  src: url('SelectMonoItalic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Commit Mono';
+  src: url('CommitMonoRegular.woff2') format('woff2');
+  font-weight: normal;
+}
+
+* {
+  margin: 0 auto 0 auto;
+  font-size: 13px;
+
+  --text-color: #333;
+  --accent-color: #007acc;
+  --background-color: rgb(255, 255, 255);
+}
+
+body, body.post {
+  align-items: center;
+  font-family: 'Select Mono', monospace, monospace;
+  font-style: italic;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+}
+body.post > main {
+  max-width: 62ch;
+}
+body.post section p {
+  text-align: justify;
+}
+
+h1, h2, h3, h4 {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  text-transform: uppercase;
+  font-size: inherit;
+  font-weight: normal;
+}
+h5 {
+  font-weight: normal;
+}
+h1::after {
+  content: "* * *";
+  display: block;
+  margin-top: 1em;
+}
+
+time::after {
+  content: " > ";
+}
+section[id], header {
+  margin-bottom: 1em;
+}
+
+pre {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 1em;
+  margin: 1em 0 1em 0;
+  overflow-x: auto;
+  text-align: left;
+  border-top: dashed 0.5px;
+  border-bottom: dashed 0.5px;
+}
+code {
+  font-family: 'Select Mono', monospace, monospace;
+}
+
+section#blog > ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+  padding-left: 9ch;
+  text-indent: -9ch;
+}
+section#blog  a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+section#blog a:hover {
+  color: var(--background-color);
+  background-color: var(--text-color);
+}
+
+main {
+  flex-direction: column;
+  text-align: center;
+  align-self: center;
+  padding: 20px;
+  max-width: 42ch;
+  margin: auto;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--background-color);
+  background-color: var(--accent-color);
+}
+
+@media only screen and (max-width: 390px) {
+  main { 
+    padding: 5px;
+    --scale-ratio: calc(100vw / 1px / 390);
+    transform: scale(var(--scale-ratio));
+    transform-origin: top center;
+    width: calc(390px / var(--scale-ratio));
+  }
+  body.post > main { 
+    max-width: 42ch;
+    text-align: justify;
+  }
+}
+
+</style>
 </head>
 <body>
 
   <main>
      <header>
-	<nav>
-	    <span><a href="/#experience">Experience</a></span>
-	    <span><a href="/#blog">Writing</a></span>
-	    <span><a href="/#music">Recording</a></span>
-	</nav>
-	<div><h1>
-	    <span style="--d: 0.00s;">SOLC</span>
-	    <span style="--d: 0.30s;">DOT</span>
-	    <span style="--d: 0.60s;">UK</span>
-	    <span style="--d: 0.70s;">//</span>
-	    <span style="--d: 1.10s;">Personal</span>
-	    <span style="--d: 1.20s;">website</span>
-	    <span style="--d: 1.28s;">of</span>
-	    <span style="--d: 1.37s;">Sol</span>
-	    <span style="--d: 1.45s;">Cotton:</span>
-	    <span style="--d: 1.53s;">Data</span>
-	    <span style="--d: 1.58s;">Engineer;</span>
-	    <span style="--d: 1.62s;">Maker</span>
-	    <span style="--d: 1.66s;">of</span>
-	    <span style="--d: 1.71s;">Noise</span>
-	    <span style="--d: 1.85s;"><a href="#experience">Experience</a></span>
-	    <span style="--d: 1.90s;"><a href="#blog">Writing</a></span>
-	    <span style="--d: 1.94s;"><a href="#music">Recording</a></span>
-            <span style="--d: 1.98s;"><a href="https://github.com/devsjc">GitHub</a></span>
-            <span style="--d: 2.02s;"><a href="https://linkedin.com/in/solcotton">LinkedIn</a></span>
-	    <span class="cursor" style="--d: 2.05s;">_</span>
-	</h1></div>
-	<a href="/#home"><h1>SOLC DOT UK <span class="cursor">_</span></h1></a>
+       <p>-----------------------------------------</p>
+       <p>--- sol cotton --------------------------</p>
+       <p>-----------------------------------------</p>
+       <p>-----------------------------------------</p>
+       <p>-------------------------<a href="https://solc.uk">solc.uk</a>---------</p>
+       <p>-----------------------------------------</p>
+       <br>
      </header>
 
-       <section id="experience">
-	<div><h1>
-	    WORK EXPERIENCE // Many years of Data Engineering Backend Engineering
-	    Cloud Engineering DevOps Systems Architecture CI/CD Pipelines Server Management
-	    (Inc. Home Kubernetes Cluster) Golang Python (Postgre)SQL GCP AWS Terraform Docker
-	</h1></div>
-       </section>
-
        <section id="blog">
-         <div><h1>
-	   DEVSJC BLOGS // Thoughts and experiences in Programming and Elsewhere; Long Form, Short Form (Chasers) Written by hand not by AI (otherwise why bother)
-         </div></h1>
+	 <p>london, uk</p>
+	 <br>
+	 <p>BLOGS</p>
+	 <br>
 	 <ul>
          <!-- BLOG_LIST_PLACEHOLDER -->
 	 </ul>
        </section>
 
+       <section id="experience">
+	 <p>WORK EXPERIENCE</p>
+	 <br>
+	 <p>
+	    Many years of: Data Engineering Backend Engineering Cloud Engineering
+	    DevOps Systems Architecture CI/CD Pipelines Server Management
+	    (Inc. Home Kubernetes Cluster) Golang Python (Postgre)SQL GCP AWS Terraform Docker
+	 </p>
+	 <br>
+	 <p>2022 &gt; openclimatefix &gt;&gt;&gt; DATA ENGINEER</p>
+	 <p>2020 &gt; auden &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; DATA ENGINEER</p>
+	 <p>2019 &gt; dunnhumby &gt;&gt;&gt;&gt;&gt; JUNIOR ENGINEER</p>
+       </section>
+
+
        <section id="music">
-         <div><h1>
-	   FACE THE MUSIC //
-	   <a href="https://soundcloud.com/thestatepension">The State Pension</a>
-	   : Drums
-         </div></h1>
+	 <p>MUSIC</p>
+	 <br>
+	 <p>the state pension</p>
+	 <p><a href="https://soundcloud.com/thestatepension">soundcloud.com/thestatepension</a></p>
+	 <br>
+	 <p>sbebs</p>
+	 <p><a href="https://youtube.com/@sbebs">youtube.com/@sbebs</a></p>
+       </section>
+
+       <section id="contact">
+	       <p>* * *</p>
+	       <br>
+	       <p>GITHUB</p>
+	       <p><a href="https://github.com/devsjc">github.com/devsjc</a></p>
+	       <br>
+	       <p>LINKEDIN</p>
+	       <p><a href="https://https://linkedin.com/in/solcotton/">linkedin.com/in/solcotton</a></p>
+	       <br>
+	       <p>EMAIL</p>
+	       <p><a href="mailto:hi.site@solc.uk">hi.site@solc.uk</a></p>
+	       <br>
+	       <p>* * *</p>
+	       <br>
+	       <p>(c) Sol Cotton</p>
        </section>
 
   </main>
