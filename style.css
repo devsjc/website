@@ -4,11 +4,17 @@
   box-sizing: border-box;
 }
 
-body {
+body, body.post {
   font-family: 'Space Grotesk', Helvetica, Arial, sans-serif;
   font-size: 18px;
   font-weight: 700;
   margin: 0;
+
+  --background-col: #050505;
+  --shade-col: rgb(17, 17, 17);
+  --text-col: rgb(178, 178, 178);
+  --tint-col: rgb(208, 208, 208);
+  --accent-col: #ff00c3;
 }
 
 main {
@@ -23,11 +29,14 @@ main {
 }
 
 header {
-  background-color: #050505;
+  background-color: var(--background-col);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 2rem;
+  border-bottom: 1px solid var(--shade-col);
+  color: var(--text-col);
+  border-bottom: 2px solid var(--shade-col);
 }
 header > div {
   opacity: 1;
@@ -41,8 +50,8 @@ header > nav, header > a {
 }
 
 section {
-  background-color: #ffffff;
-  color: #050505;
+  background-color: var(--background-col);
+  color: var(--text-col);
   display: none;
   align-items: center;
   padding: 2rem;
@@ -71,7 +80,7 @@ main:has(section:target) header > div {
 }
 main:has(section:target) header > a {
   display: inline;
-  color: #ffffff;
+  color: var(--tint-col);
   width: 100%;
   text-align: center;
 }
@@ -84,8 +93,12 @@ ul {
   list-style: none;
   padding: 0;
 }
-li > h1 {
+li > h3 {
   margin-bottom: 5px;
+}
+li > time {
+  font-size: 0.8rem;
+  color: var(--text-col);
 }
 
 /* Likewise, when a blog post is targeted */
@@ -102,7 +115,7 @@ body.post header > div {
 }
 body.post header > a {
   display: inline;
-  color: #ffffff;
+  color: var(--tint-col);
   width: 100%;
   text-align: center;
 }
@@ -118,11 +131,11 @@ article {
 article img { max-width: 100%; }
 article pre {
   overflow-x: auto;
-  background: #f4f4f4;
+  border: 1px solid var(--text-col);
+  background: var(--shade-col);
   padding: 1rem;
-  border-radius: 5px;
   font-family: 'Space Mono', monospace;
-  font-size: 15px;
+  font-size: .875rem;
   font-weight: 400;
   max-width: 100%;
 }
@@ -154,17 +167,17 @@ a:hover {
   }
   50% {
     opacity: 1;
-    color: #ff003c;
+    color: var(--accent-col);
   }
   100% {
     opacity: 1;
-    color: #ffffff;
+    color: var(--tint-col);
   }
 }
 
 .cursor {
   opacity: 0;
-  color: #ff003c;
+  color: var(--accent-col);
   animation:
     flash 0.1s steps(1) forwards,
     blink 0.8s step-end infinite;
@@ -172,8 +185,8 @@ a:hover {
 }
 
 @keyframes blink {
-  0% { opacity: 1; color: #ff003c; }
-  50% { opacity: 0; color: #ff003c; }
+  0% { opacity: 1; color: var(--accent-col); }
+  50% { opacity: 0; color: var(--accent-col); }
 }
 
 @media only screen and (max-width: 680px) {

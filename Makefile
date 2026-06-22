@@ -28,15 +28,16 @@ dist/%.html: posts/*/%.typ | dist
 	@rm -f "$@.tmp"
 
 dist/index.html: index.html $(SOURCES) | dist
-	@rm -f dist/blog_list.tmp
+	@rm -f dist/blog_list.tmp dist/blog_list_sorted.tmp
 	@for file in $(SOURCES); do \
 		title=$$(grep 'head:' "$$file" | head -n 1 | cut -d'"' -f2); \
 		date=$$(grep 'date:' "$$file" | head -n 1 | cut -d'"' -f2); \
 		bname=$$(basename "$$file" .typ); \
-		echo "<li><h1><a href='$$bname.html'>$$title</a></h1><time>$$date</time></li>" >> dist/blog_list.tmp; \
+		echo "$$date|<li><h3><a href='$$bname.html'>$$title</a></h3><time>$$date</time></li>" >> dist/blog_list.tmp; \
 	done
-	@sed -e '/<!-- BLOG_LIST_PLACEHOLDER -->/r dist/blog_list.tmp' -e '/<!-- BLOG_LIST_PLACEHOLDER -->/d' index.html > $@
-	@rm -f dist/blog_list.tmp
+	@sort -r dist/blog_list.tmp | cut -d'|' -f2 > dist/blog_list_sorted.tmp
+	@sed -e '/<!-- BLOG_LIST_PLACEHOLDER -->/r dist/blog_list_sorted.tmp' -e '/<!-- BLOG_LIST_PLACEHOLDER -->/d' index.html > $@
+	@rm -f dist/blog_list.tmp dist/blog_list_sorted.tmp
 
 .PHONY: serve
 serve: bundle
