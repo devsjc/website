@@ -40,21 +40,40 @@ body.post > main {
 body.post section p {
   text-align: justify;
 }
+body.post section p + p {
+	margin-top: 1em;
+	text-indent: 1em;
+}
+body.post ul, ol {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  text-align: left;
+}
 
-h1, h2, h3, h4 {
+h1, h2, h3 {
   margin-top: 1em;
   margin-bottom: 1em;
   text-transform: uppercase;
   font-size: inherit;
   font-weight: normal;
 }
-h5 {
+h4, h5, h6 {
+  margin-top: 1em;
+  margin-bottom: 1em;
   font-weight: normal;
 }
 h1::after {
   content: "* * *";
   display: block;
   margin-top: 1em;
+}
+h4::after {
+  content: " - - - - - - - - - - - ";
+  display: block;
+}
+
+blockquote {
+  margin: 1em 0 1em 0;
 }
 
 time::after {
@@ -144,22 +163,18 @@ a:hover {
        <p>-----------------------------------------</p>
        <p>-------------------------<a href="https://solc.uk">solc.uk</a>---------</p>
        <p>-----------------------------------------</p>
-       <br>
      </header>
 
        <section id="blog">
-	 <p>london, uk</p>
-	 <br>
-	 <p>BLOGS</p>
-	 <br>
+	 <h4>london, uk</h4>
+	 <h2>BLOGS</h2>
 	 <ul>
          <!-- BLOG_LIST_PLACEHOLDER -->
 	 </ul>
        </section>
 
      <section id="experience">
-       <p>WORK EXPERIENCE</p>
-       <br>
+       <h2>WORK EXPERIENCE</h2>
        <p>
 	    Many years of: Data Engineering Backend Engineering Cloud Engineering
 	    DevOps Systems Architecture CI/CD Pipelines Server Management
@@ -173,15 +188,13 @@ a:hover {
 
 
        <section id="talks">
-	 <p>talks</p>
-	 <br>
+	 <h4>talks</h4>
 	 <p>multidimensional data &gt;&gt;&gt;&gt;&gt; <a href="https://cloudnativegeo.org/events/cng-london/">CNG LONDON</a></p>
 	 <p>energy forecasting &gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; <a href="https://fosdem.org/2026/">FOSDEM</a></p>
        </section>
 
        <section id="music">
-	 <p>MUSIC</p>
-	 <br>
+	 <h2>MUSIC</h2>
 	 <p>the state pension</p>
 	 <p><a href="https://soundcloud.com/thestatepension">soundcloud.com/thestatepension</a></p>
 	 <br>
@@ -204,14 +217,52 @@ a:hover {
 	       <p>* * *</p>
        </section>
 
+       <section id="dash">
+	       <h2>* DASH *</h2>
+	       <p>You've found the hidden dashboard of my home server! None of the links will work</p>
+	       <br>
+	       <h4>services</h4>
+	       <ul>
+		       <li><p>
+			       <a class="polled-link" href="http://homeassistant.krang.solc.uk">home assistant</a>
+						 &gt;&gt;&gt;&gt;&gt;&gt; <span class="polled-status">CHECKING...</span>
+						</p>	
+		       </li>
+	       <p>home assistant</p>
+
+       </section>
+
+
       <footer>
-       <p>THANK YOU FOR VISITING</p>
-       <br>
+       <h2>THANK YOU FOR VISITING</h2>
        <p>(c) Sol Cotton</p>
        <br>
       </footer>
 
   </main>
 
+	<script>
+        async function checkAllLinks() {
+          const links = document.querySelectorAll('.polled-link');
+
+          links.forEach(async (link) => {
+            const statusTextElement = link.nextElementSibling;
+
+            try {
+              const requestUrl = `/cgi-bin/status.sh?url=${link.href}`;
+
+              const response = await fetch(requestUrl);
+              const result = await response.text();
+
+              statusTextElement.textContent = result.trim();
+            } catch (error) {
+              statusTextElement.textContent = 'INOPERATIVE';
+            }
+          });
+        }
+
+        checkAllLinks();
+        setInterval(checkAllLinks, 30000);
+    </script>
 </body>
 </html>
