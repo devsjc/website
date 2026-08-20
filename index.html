@@ -49,6 +49,15 @@ body.post ul, ol {
   margin-bottom: 1em;
   text-align: left;
 }
+body.post h3 {
+  border-bottom: dashed 0.5px;
+  border-top: dashed 0.5px;
+  padding: 1em;
+}
+body.post h4 {
+  border-bottom: dashed 0.5px;
+  padding-bottom: 1em;
+}
 
 h1, h2, h3 {
   margin-top: 1em;
@@ -66,10 +75,6 @@ h1::after {
   content: "* * *";
   display: block;
   margin-top: 1em;
-}
-h4::after {
-  content: " - - - - - - - - - - - ";
-  display: block;
 }
 
 blockquote {
@@ -216,22 +221,6 @@ a:hover {
 	       <br>
 	       <p>* * *</p>
        </section>
-
-       <section id="dash">
-	       <h2>* DASH *</h2>
-	       <p>You've found the hidden dashboard of my home server! None of the links will work</p>
-	       <br>
-	       <h4>services</h4>
-	       <ul>
-		       <li><p>
-			       <a class="polled-link" href="http://homeassistant.krang.solc.uk">home assistant</a>
-						 &gt;&gt;&gt;&gt;&gt;&gt; <span class="polled-status">CHECKING...</span>
-						</p>	
-		       </li>
-	       <p>home assistant</p>
-
-       </section>
-
 
       <footer>
        <h2>THANK YOU FOR VISITING</h2>
